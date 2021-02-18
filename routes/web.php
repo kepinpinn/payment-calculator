@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShoppingController;
+Route::resource('shoppings', ShoppingController::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/payment_calculator', function () {
     return view('welcome');
 });
 
