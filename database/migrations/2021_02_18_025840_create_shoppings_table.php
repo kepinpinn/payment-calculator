@@ -24,13 +24,6 @@ class CreateShoppingsTable extends Migration
             $table->integer('total');
             $table->integer('promo');
             $table->integer('total_bayar');
-            $table->string('borrower');
-            $table->integer('price_qty');
-            $table->decimal('ppn_borrower');
-            $table->decimal('presentase');
-            $table->integer('promo_borrower');
-            $table->integer('total_bayar_borrower');
-            $table->text('description');
             $table->timestamps();
         });
     }

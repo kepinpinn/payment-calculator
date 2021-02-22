@@ -15,7 +15,18 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('shopping_id');
+            $table->string('borrower');
+            $table->integer('price_qty');
+            $table->decimal('ppn_borrower');
+            $table->decimal('presentase');
+            $table->integer('promo_borrower');
+            $table->integer('total_bayar_borrower');
+            $table->text('description');
             $table->timestamps();
+
+            $table->foreign('shopping_id')->references('id')->on('shoppings')
+                ->onDelete('cascade');
         });
     }
 
