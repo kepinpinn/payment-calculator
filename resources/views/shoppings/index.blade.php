@@ -1,17 +1,14 @@
-@extends('template')
+@extends('admin/admin')
 
 @section('content')
-    <div class="row mt-5 mb-5">
-        <div class="col-lg-12 margin-tb">
-            <div class="float-left">
-                <h2>Tutorial CRUD Laravel 8 untuk Pemula - Ilmucoding.com</h2>
-            </div>
-
+    <div class="card">
+        <div class="card-header">
+                <h2 >INDEX SHOPPING</h2>
             <div class="float-right">
-                <a class="btn btn-success" href="{{ route('shoppings.create') }}"> Create Shopping</a>
+                <a class="btn btn-secondary" href="{{ route('shoppings.create') }}"> Create Shopping</a>
             </div>
         </div>
-    </div>
+
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
@@ -19,12 +16,14 @@
         </div>
     @endif
 
+<div class="card-body">
     <table class="table table-bordered">
+        <thead>
         <tr>
             <th width="20px" class="text-center">No</th>
             <th width="20px" class="text-center">Creditor</th>
             <th width="20px" class="text-center">Date</th>
-            <th width="20px" class="text-center">Items</th>
+            <th width="20px" class="text-center">Store</th>
             <th width="20px" class="text-center">Amount</th>
             <th width="20px" class="text-center">PPn</th>
             <th width="20px" class="text-center">Delivery</th>
@@ -33,13 +32,15 @@
             <th width="20px" class="text-center">Total Bayar</th>
             <th width="280px"class="text-center">Action</th>
         </tr>
+        </thead>
+        <tbody>
         @foreach ($shoppings as $shopping)
             <tr>
                 <td class="text-center">{{ ++$i }}</td>
                 <td>{{ $shopping->nama_kreditor }}</td>
                 <td>{{ $shopping->tanggal }}</td>
-                <td>{{ $shopping->items }}</td>
-                <td>{{ $shopping->Amount }}</td>
+                <td>{{ $shopping->store }}</td>
+                <td>{{ $shopping->amount }}</td>
                 <td>{{ $shopping->ppn }}</td>
                 <td>{{ $shopping->delivery }}</td>
                 <td>{{ $shopping->total }}</td>
@@ -60,7 +61,12 @@
                 </td>
             </tr>
         @endforeach
+        </tbody>
     </table>
+</div>
+    </div>
+
+
 
     {!! $shoppings->links() !!}
 

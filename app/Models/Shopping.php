@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Shopping extends Model
 {
     use HasFactory;
-    public function payments(){
-        return $this->hasMany(Payment::class);
+    public function shopping_details(){
+        return $this->hasMany(Shopping_detail::class);
     }
+
 }

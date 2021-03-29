@@ -17,9 +17,9 @@ class CreateShoppingsTable extends Migration
             $table->id();
             $table->string('nama_kreditor');
             $table->date('tanggal');
-            $table->string('items');
-            $table->integer('Amount');
-            $table->decimal('ppn');
+            $table->string('store');
+            $table->integer('amount');
+            $table->boolean('ppn');
             $table->integer('delivery');
             $table->integer('total');
             $table->integer('promo');

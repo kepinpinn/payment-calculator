@@ -2,7 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShoppingController;
-Route::resource('shoppings', ShoppingController::class);
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\DashboardController;
+Route::resource('shoppings', ShoppingController::class)->middleware('auth');
+Route::resource('payments', PaymentController::class)->middleware('auth');
+Route::resource('shopping_details', \App\Http\Controllers\ShoppingDetailController::class)->middleware('auth');;
+Route::resource('payments', PaymentController::class)->middleware('auth');;
+Route::resource('dashboard',DashboardController::class)->middleware('auth');;
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +24,11 @@ Route::resource('shoppings', ShoppingController::class);
 */
 
 Route::get('/payment_calculator', function () {
-    return view('welcome');
-});
+    return view('dashboard.index');
+})->middleware('auth');
 
-Auth::routes(['register'=>false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes(['register'=>true]);
+
+
+/* Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */

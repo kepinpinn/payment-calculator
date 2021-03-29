@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Payment;
+use App\Models\Shopping;
 class PaymentController extends Controller
 {
     /**
@@ -13,7 +14,10 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        $payments = Payment::query()->paginate(5);
+
+        return view('payments.index',compact('payments'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -23,7 +27,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+        return view('payments.create');
     }
 
     /**
@@ -34,18 +38,22 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Payment::create($request->all());
+
+        return redirect()->route('payments.index')
+            ->with('success','Payment created successfully.');
     }
 
     /**
      * Display the specified resource.
-     *
+     * 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($payment)
     {
-        //
+        $payments = Payment::with('posts')->where('id','=',$payment)->firstOrFail();
+        return view('payments.show',['payment'=>$payments]);
     }
 
     /**
