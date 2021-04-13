@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Shopping;
 use App\Models\Shopping_detail;
+use App\Models\Shopping;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ShoppingController;
-use App\Http\Controllers\ShoppingDetailController;
+
 
 Route::resource('shoppings', ShoppingController::class);
 Route::resource('shopping_details', ShoppingDetailController::class);
@@ -24,20 +24,35 @@ class ShoppingController extends Controller
 
     public function create()
     {
-
-        return view('shoppings.create');
+        $users = User::query()->get();
+        return view('shoppings.create',['users'=>$users]);
     }
 
     public function store(Request $request)
     {
-        $shopping_details = Shopping_detail::query()->get();
+        if($request->has('ppn')){
+        //if checked
+        }else{
+            //not checked
+        }
+        $request->validate([
+            'user_id' => 'required',
+            'tanggal' => 'required',
+            'store' => 'required',
+            'amount' => 'required',
+            'delivery' => 'required',
+            'total' => 'required',
+            'total_bayar' => 'required',
+        ]);
+        $shopping = Shopping::create($request->all());
 
-        return view('shoppings.index',['shopping_details'=>$shopping_details,'shopping'=>$shoppings]);
+        return redirect()->route('shoppings.show',['shopping'=>$shopping->id])
+            ->with('success','Post created successfully.');
     }
 
     public function show($shopping)
     {
-        $shopping = Shopping::with('shopping_details')->where('id','=',$shopping)->firstOrFail();
+        $shopping = Shopping::with('shopping_details','user')->where('id','=',$shopping)->firstOrFail();
         return view('shoppings.show',['shopping'=>$shopping]);
     }
 

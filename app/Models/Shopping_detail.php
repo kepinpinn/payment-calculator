@@ -11,4 +11,7 @@ class Shopping_detail extends Model
     public function shoppings(){
         return $this->belongsTo(Shopping::class);
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

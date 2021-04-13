@@ -2,7 +2,6 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-
             <th width="20px" class="text-center">Creditor</th>
             <th width="20px" class="text-center">Date</th>
             <th width="20px" class="text-center">Store</th>

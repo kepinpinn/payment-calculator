@@ -22,17 +22,22 @@
     @endif
     <div class="card-body">
     <form id="shop" action="{{route('shoppings.store') }}" method="POST">
+        @csrf
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Creditor:</strong>
-                    <input type="text" name="creditor" class="form-control" placeholder="Creditor">
+                    <select name="user_id" id="user_id">
+                        @foreach($users as $user)
+                            <option value="{{$user->id}}">{{$user->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Date:</strong>
-                    <input type="date" name="date" class="form-control" placeholder="Date">
+                    <input type="date" name="tanggal" class="form-control" placeholder="Date">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -68,18 +73,18 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Promo:</strong>
-                    <input type="number" name="promo" class="form-control" placeholder="Promo">
+                    <input type="number" name="promo1" class="form-control" placeholder="Promo">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Total Bayar:</strong>
-                    <input type="number" name="total_bayar" class="form-control" placeholder="Total Bayar   ">
+                    <input type="number" name="total_bayar" class="form-control" placeholder="Total Bayar">
                 </div>
             </div>
         </div>
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">Create Shopping</button>
+<!--
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">Create Detail Shopping</button>
         <div class ="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -100,7 +105,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="" method="POST">
+                        <form action="{{route('shopping_details.store') }}" method="POST">
                             @csrf
 
                             <div class="row">
@@ -143,28 +148,26 @@
                                 </div>
 
                             </div>
-
+                            <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save Changes</button>
+                            </div>
                         </form>
                     </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save Changes</button>
-                    </div>
+
                 </div>
 
             </div>
         </div>
-          <!-- <a class="btn btn-success" href="{{ route('shopping_details.create') }}"> Create Details</a> -->
 
     <table class="table table-bordered" method="POST">
         <tr>
-
+            <th width="20px" class="text-center">No</th>
             <th width="20px" class="text-center">Borrower</th>
             <th width="20px" class="text-center">Price</th>
             <th width="20px" class="text-center">Ppn</th>
-            <th width="20px" class="text-center">Presentase</th>
             <th width="20px" class="text-center">Promo Borrower</th>
-            <th width="20px" class="text-center">Total Paid</th>
+            <th width="20px" class="text-center">Total Bayar Borrower</th>
             <th width="20px" class="text-center">Deskripsi</th>
             <th width="20px" class="text-center">Status</th>
             <th width="280px" class="text-center">Action</th>
@@ -181,7 +184,6 @@
                 <td></td>
                 <td class="text-center">
 
-
                         <a class="btn btn-primary btn-sm">Edit</a>
 
                         @csrf
@@ -191,8 +193,9 @@
 
                 </td>
             </tr>
-    </table>
 
+    </table>
+-->
         <button type="reset" form="shop" class="btn btn-danger" >Reset</button>
         <button type="submit" form="shop" class="btn btn-success" >Submit</button>
 

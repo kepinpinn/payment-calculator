@@ -15,16 +15,19 @@ class CreateShoppingsTable extends Migration
     {
         Schema::create('shoppings', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kreditor');
+            $table->unsignedBigInteger('user_id');
             $table->date('tanggal');
             $table->string('store');
             $table->integer('amount');
-            $table->boolean('ppn');
+            $table->boolean('ppn')->nullable()->default(0);
             $table->integer('delivery');
             $table->integer('total');
-            $table->integer('promo');
+            $table->integer('promo1')->nullable();
             $table->integer('total_bayar');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 

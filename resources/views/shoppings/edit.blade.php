@@ -2,25 +2,23 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-                <h2> Edit Shopping</h2>
+            <h2 >EDIT SHOPPING</h2>
             <div class="float-right">
-                <a class="btn btn-secondary" href="{{ route('shoppings.index') }}">Back</a>
+                <a class="btn btn-secondary" href="{{ route('shoppings.index') }}"> Back</a>
             </div>
-
         </div>
 
 
-
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         <div class="card-body">
 <form  action="{{ route('shoppings.update',$shopping->id) }}" method="POST">
     @csrf
@@ -35,7 +33,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Date:</strong>
-                <input type="date" name="tanggal" value="{{$shopping->tanggal}}" class="form-control" placeholder="Date">
+                <input type="date" name="date" value="{{$shopping->tanggal}}" class="form-control" placeholder="Date">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -71,7 +69,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Promo:</strong>
-                <input type="number" name="promo" value="{{$shopping->promo}}"class="form-control" placeholder="Promo">
+                <input type="number" name="promo1" value="{{$shopping->promo1}}"class="form-control" placeholder="Promo">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -81,9 +79,9 @@
             </div>
         </div>
     </div>
-    <button type="reset" class="btn btn-danger" >Reset</button>
-    <button type="submit" class="btn btn-success" >Submit</button>
+    <button type="submit" class="btn btn-success" >Save</button>
 </form>
         </div>
     </div>
+
 @endsection

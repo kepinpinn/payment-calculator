@@ -37,14 +37,14 @@
         @foreach ($shoppings as $shopping)
             <tr>
                 <td class="text-center">{{ ++$i }}</td>
-                <td>{{ $shopping->nama_kreditor }}</td>
+                <td>{{ $shopping->user->name }}</td>
                 <td>{{ $shopping->tanggal }}</td>
                 <td>{{ $shopping->store }}</td>
                 <td>{{ $shopping->amount }}</td>
                 <td>{{ $shopping->ppn }}</td>
                 <td>{{ $shopping->delivery }}</td>
                 <td>{{ $shopping->total }}</td>
-                <td>{{ $shopping->promo }}</td>
+                <td>{{ $shopping->promo1 }}</td>
                 <td>{{ $shopping->total_bayar }}</td>
                 <td class="text-center">
                     <form action="{{ route('shoppings.destroy',$shopping->id) }}" method="POST">
@@ -63,11 +63,17 @@
         @endforeach
         </tbody>
     </table>
+    <div class="pull-right">
+        {{ $shoppings->links()}}
+    </div>
+
 </div>
+        <div>
+        </div>
     </div>
 
 
 
-    {!! $shoppings->links() !!}
+
 
 @endsection
