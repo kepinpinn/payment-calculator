@@ -1,12 +1,14 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShoppingController;
+use App\Http\Controllers\ShoppingDetailController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DashboardController;
 Route::resource('shoppings', ShoppingController::class)->middleware('auth');
 Route::resource('payments', PaymentController::class)->middleware('auth');
-Route::resource('shopping_details', \App\Http\Controllers\ShoppingDetailController::class)->middleware('auth');;
+Route::resource('shopping_details', ShoppingDetailController::class)->middleware('auth');;
 Route::resource('payments', PaymentController::class)->middleware('auth');;
 Route::resource('dashboard',DashboardController::class)->middleware('auth');;
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

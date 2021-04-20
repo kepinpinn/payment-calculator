@@ -14,6 +14,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
+
         $payments = Payment::query()->paginate(5);
 
         return view('payments.index',compact('payments'))
@@ -46,7 +47,7 @@ class PaymentController extends Controller
 
     /**
      * Display the specified resource.
-     * 
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

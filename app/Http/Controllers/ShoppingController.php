@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Shopping_detail;
 use App\Models\Shopping;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,13 +31,15 @@ class ShoppingController extends Controller
 
     public function store(Request $request)
     {
+
+
         if($request->has('ppn')){
         //if checked
         }else{
             //not checked
         }
+
         $request->validate([
-            'user_id' => 'required',
             'tanggal' => 'required',
             'store' => 'required',
             'amount' => 'required',
@@ -44,30 +47,35 @@ class ShoppingController extends Controller
             'total' => 'required',
             'total_bayar' => 'required',
         ]);
-        $shopping = Shopping::create($request->all());
 
+        $request->merge([
+            'user_id' =>  Auth::id()
+        ]);
+
+        $shopping = Shopping::create($request->all());
         return redirect()->route('shoppings.show',['shopping'=>$shopping->id])
             ->with('success','Post created successfully.');
     }
 
     public function show($shopping)
     {
+        $users = User::query()->get();
         $shopping = Shopping::with('shopping_details','user')->where('id','=',$shopping)->firstOrFail();
-        return view('shoppings.show',['shopping'=>$shopping]);
+        return view('shoppings.show',['shopping'=>$shopping],['users'=>$users]);
     }
 
     public function edit(Shopping $shopping)
     {
-        return view('shoppings.edit',compact('shopping'));
+        $users = User::query()->get();
+        return view('shoppings.edit',compact('shopping'),['users'=>$users]);
     }
 
     public function update(Request $request, Shopping $shopping)
     {
 
-
+        $users = User::query()->get();
         $shopping->update($request->all());
-
-        return redirect()->route('shoppings.index')
+        return redirect()->route('shoppings.index',['users'=>$users->id])
             ->with('success','Shopping updated successfully');
     }
 
@@ -75,7 +83,7 @@ class ShoppingController extends Controller
     {
         $shopping->delete();
 
-        return redirect()->route('shoppings.index')
+        return redirect()->back()
             ->with('success','Shopping deleted successfully');
     }
 }

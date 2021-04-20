@@ -27,7 +27,12 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Creditor:</strong>
-                <input type="text" name="creditor" value="{{$shopping->nama_kreditor}}" class="form-control" placeholder="Creditor">
+                <select name="creditor" id="creditor">
+                    @foreach($users as $user)
+                        <option value="{{$user->id}}" {{ $user->id == $user->id ? "selected" : '' }}>{{$user->id}}.{{$user->name}}</option>
+                    @endforeach
+                </select>
+
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

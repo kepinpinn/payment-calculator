@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Models\Shopping_detail;
 use App\Models\Shopping;
-Route::resource('shopping_details', ShoppingDetailController::class);
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
+Route::resource('shopping_details', ShoppingDetailController::class);
+Route::resource('shoppings', ShoppingController::class);
 
 class ShoppingDetailController extends Controller
 {
@@ -18,7 +21,8 @@ class ShoppingDetailController extends Controller
      */
     public function index()
     {
-        $shopping_details = Shopping_detail::query()->paginate(5);
+        $id = Auth::user()->id;
+        $shopping_details = Shopping_detail::query($id)->paginate(5);
 
         return view('shopping_details.index',compact('shopping_details'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -31,8 +35,8 @@ class ShoppingDetailController extends Controller
      */
     public function create()
     {
-        $shopping_details = Shopping_detail::query()->get();
-        return view('shopping_details.create',['shopping_details'=>$shopping_details]);
+        $users = User::query()->get();
+        return view('shopping_details.create',['users'=>$users]);
     }
 
     /**
@@ -43,7 +47,15 @@ class ShoppingDetailController extends Controller
      */
     public function store(Request $request)
     {
-
+        $request->validate([
+            'borrower' => 'required',
+            'price_qty' => 'required',
+            'delivery_borrower' => 'required',
+            'total_bayar_borrower' => 'required',
+        ]);
+        Shopping_detail::create($request->all());
+        return redirect()->back()
+            ->with('success','Detail created successfully.');
     }
 
     /**
@@ -65,7 +77,8 @@ class ShoppingDetailController extends Controller
      */
     public function edit($id)
     {
-       return view('shopping_details.edit');
+       return redirect()->back()
+           ->with('success','Detail created successfully.');
     }
 
     /**
@@ -73,11 +86,21 @@ class ShoppingDetailController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Shopping_detail $shopping_detail)
     {
-        //
+        $request->validate([
+            'borrower' => 'required',
+            'price_qty' => 'required',
+            'delivery_borrower' => 'required',
+            'total_bayar_borrower' => 'required',
+
+        ]);
+
+        $shopping_detail->update($request->all());
+        return redirect()->back()
+            ->with('success','Details updated successfully.');
     }
 
     /**
@@ -86,11 +109,11 @@ class ShoppingDetailController extends Controller
      * @param  int  $id
       @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Shopping_detail $shopping_detail)
     {
         $shopping_detail->delete();
 
-        return redirect()->route('shopping_details.index')
+        return redirect()->back()
             ->with('success','Post deleted successfully');
     }
 }

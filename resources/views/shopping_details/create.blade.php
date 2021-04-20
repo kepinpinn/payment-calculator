@@ -1,6 +1,13 @@
-@extends('template')
+@extends('admin/admin')
 @section('content')
+    <div class="card">
+        <div class="card-header">
+            <h2 >Bayar Hutang</h2>
+            <div class="float-right">
+                <a class="btn btn-secondary" href="{{ route('shopping_details.index') }}">Back</a>
+            </div>
 
+        </div>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -12,7 +19,7 @@
             </ul>
         </div>
     @endif
-
+        <div class="card-body">
     <form action="" method="POST">
         @csrf
 
@@ -36,6 +43,7 @@
                     <input type="checkbox" name="ppn" class="custom-checkbox" placeholder="PPn">
                 </div>
             </div>
+
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Promo:</strong>
@@ -54,10 +62,11 @@
                     <textarea class="form-control" style="height:150px" name="deskripsi" placeholder="Deskripsi"></textarea>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+
         </div>
 
     </form>
+        </div>
+    </div>
 @endsection

@@ -16,17 +16,20 @@ class CreateShoppingDetailsTable extends Migration
         Schema::create('shopping_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('shopping_id');
-            $table->string('borrower');
+            $table->unsignedBigInteger('borrower');
             $table->integer('price_qty');
-            $table->boolean('ppn_borrower');
-            $table->integer('promo_borrower');
+            $table->boolean('ppn_borrower')->nullable()->default(0);
+            $table->integer('promo_borrower')->nullable();
             $table->integer('delivery_borrower');
             $table->integer('total_bayar_borrower');
-            $table->text('description');
+            $table->text('description')->nullable();
+            $table->text('attachment')->nullable();
             $table->string('status')->default('unpaid');
             $table->timestamps();
 
             $table->foreign('shopping_id')->references('id')->on('shoppings')
+                ->onDelete('cascade');
+            $table->foreign('borrower')->references('id')->on('users')
                 ->onDelete('cascade');
         });
     }
