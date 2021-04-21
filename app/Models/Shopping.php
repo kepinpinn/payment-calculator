@@ -9,9 +9,9 @@ class Shopping extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id','tanggal', 'store', 'amount', 'ppn', 'delivery', 'total','promo1','total_bayar'
+        'user_id','tanggal', 'store', 'amount', 'ppn', 'delivery', 'promo1'
     ];
-
+    protected $appends  =['total','total_bayar'];
 
     public function shopping_details()
     {
@@ -20,5 +20,11 @@ class Shopping extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-
+    public function getTotalAttribute(){
+        return $this->amount
+            + $this->delivery;
+    }
+    public function  getTotalBayarAttribute(){
+        return $this->total - $this->promo1;
+    }
 }

@@ -100,7 +100,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <strong>Price:</strong>
-                                                <input type="number" name="price_qty" class="form-control" placeholder="Price">
+                                                <input type="number" name="price_qty" class="form-control prc" placeholder="Price">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -111,20 +111,20 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
+                                                <strong>Delivery:</strong>
+                                                <input type="number" name="delivery_borrower" class="form-control prc" placeholder="Delivery Borrower">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
                                                 <strong>Promo:</strong>
                                                 <input type="number" name="promo_borrower" class="form-control" placeholder="Promo">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <strong>Delivery:</strong>
-                                                <input type="number" name="delivery_borrower" class="form-control" placeholder="Delivery Borrower">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
                                                 <strong>Total Bayar Borrower:</strong>
-                                                <input type="number" name="total_bayar_borrower" class="form-control" placeholder="Total Bayar Borrower">
+                                                <input id="total_bayar_borrower" name="total_bayar_borrower" class="form-control" placeholder="Total Bayar Borrower" readonly>
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -146,6 +146,7 @@
                     </div>
                 </div>
                 {{-- Start Edit Modal --}}
+                {{--
                 <div class ="modal fade" id="modal_edit" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -171,7 +172,7 @@
                                     @method('PUT')
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
+                                            <div class="form-group-2">
                                                 <strong>Creditor Name:</strong>
                                                 <input type="text" class="form-control" placeholder="{{$shopping->user->name}}" disabled>
                                                 <input type="hidden" name="shopping_id" value="{{$shopping->id}}">
@@ -180,7 +181,7 @@
 
                                         @foreach($shopping->shopping_details as $shopping_detail)
                                         <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
+                                            <div class="form-group-2">
                                                 <strong>Borrower:</strong>
                                                 <select name="borrower" id="borrower">
                                                     @foreach($users as $user)
@@ -190,37 +191,37 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
+                                            <div class="form-group-2">
                                                 <strong>Price:</strong>
                                                 <input type="number" value="{{$shopping_detail->price_qty}}" name="price_qty" class="form-control" placeholder="Price">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
+                                            <div class="form-group-2">
                                                 <strong>PPn:</strong>
                                                 <input type="checkbox" value="{{$shopping_detail->ppn_borrower}}" name="ppn_borrower" class="form-control" placeholder="PPn">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
+                                            <div class="form-group-2">
                                                 <strong>Promo:</strong>
                                                 <input type="number" value="{{$shopping_detail->promo_borrower}}" name="promo_borrower" class="form-control" placeholder="Promo">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
+                                            <div class="form-group-2">
                                                 <strong>Delivery:</strong>
                                                 <input type="number" value="{{$shopping_detail->delivery_borrower}}" name="delivery_borrower" class="form-control" placeholder="Delivery Borrower">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
+                                            <div class="form-group-2">
                                                 <strong>Total Bayar Borrower:</strong>
-                                                <input type="number" value="{{$shopping_detail->total_bayar_borrower}}" name="total_bayar_borrower" class="form-control" placeholder="Total Bayar Borrower">
+                                                <input id="total_bayar_borrower" value="{{$shopping_detail->total_bayar_borrower}}" name="total_bayar_borrower" class="form-control" readonly placeholder="Total Bayar Borrower">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
+                                            <div class="form-group-2">
                                                 <strong>Deskripsi:</strong>
                                                 <textarea class="form-control" value="{{$shopping_detail->description}}" style="height:150px" name="description" placeholder="Deskripsi"></textarea>
                                             </div>
@@ -237,7 +238,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div> --}}
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -319,15 +320,7 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
-        $('#modal_edit').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var recipient = button.data('whatever') // Extract info from data-* attributes
-            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-            var modal = $(this)
-            modal.find('.modal-title').text('New message to ' + recipient)
-            modal.find('.modal-body input').val(recipient)
-        })
+
 
         $('.dialog-edit').on('click', function () {
             var modalDom = $('#modal_edit');
@@ -338,6 +331,28 @@
             var actionValue = modalDom.find('form').attr('action')
             modalDom.find('form').attr('action', actionValue +'/'   + dataId)
         });
+
+        $('.form-group').on('input','.prc','.pr',function (){
+            var totalSum = 0;
+            $('.form-group .prc').each(function (){
+                var inputVal = $(this).val();
+                if($.isNumeric(inputVal)){
+                    totalSum += parseFloat(inputVal);
+                }
+            });
+            $('#total_bayar_borrower').val(totalSum);
+        })
+        $('.form-group-2').on('input','.prc','.pr',function (){
+            var totalSum = 0;
+            $('.form-group .prc').each(function (){
+                var inputVal = $(this).val();
+                if($.isNumeric(inputVal)){
+                    totalSum += parseFloat(inputVal);
+                }
+            });
+            $('#total_bayar_borrower').val(totalSum);
+        })
+
     </script>
 
 @endsection

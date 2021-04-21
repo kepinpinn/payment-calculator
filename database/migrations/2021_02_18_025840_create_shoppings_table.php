@@ -21,9 +21,7 @@ class CreateShoppingsTable extends Migration
             $table->integer('amount');
             $table->boolean('ppn')->nullable()->default(0);
             $table->integer('delivery');
-            $table->integer('total');
             $table->integer('promo1')->nullable();
-            $table->integer('total_bayar');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')

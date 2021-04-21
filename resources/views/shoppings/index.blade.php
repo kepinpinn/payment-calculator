@@ -46,6 +46,7 @@
                 <td>{{ $shopping->total }}</td>
                 <td>{{ $shopping->promo1 }}</td>
                 <td>{{ $shopping->total_bayar }}</td>
+
                 <td class="text-center">
                     <form action="{{ route('shoppings.destroy',$shopping->id) }}" method="POST">
 

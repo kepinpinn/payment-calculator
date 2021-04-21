@@ -39,7 +39,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Amount:</strong>
-                    <input type="number" name="amount" class="form-control" placeholder="Amount">
+                    <input type="number" name="amount" class="form-control prc" placeholder="Amount">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -51,19 +51,13 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Delivery:</strong>
-                    <input type="number" name="delivery" class="form-control" placeholder="Delivery">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Total:</strong>
-                    <input type="number" name="total" id="total" class="form-control" placeholder="Total">
+                    <input type="number" name="delivery" class="form-control prc" placeholder="Delivery">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Promo:</strong>
-                    <input type="number" name="promo1" class="form-control" placeholder="Promo">
+                    <input type="number" name="promo1" class="form-control pr" placeholder="Promo">
                 </div>
             </div>
         </div>
@@ -71,21 +65,22 @@
         <button type="submit" form="shop" class="btn btn-success" >Submit</button>
 
     </form>
+        <!--
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        <script>
-            $(function() {
-                $('.form-control').change(function() {
-                    var total = 0;
-
-                    $('.form-control').each(function() {
-                        if( $(this).val() != '' )
-                            total += parseInt($(this).val());
-                    });
-
-                    $('#total').html(total);
-                });
-            });
-        </script>
+   <script>
+       $('.form-group').on('input','.prc','.pr',function (){
+           var totalSum = 0;
+           $('.form-group .prc').each(function (){
+               var inputVal = $(this).val();
+               if($.isNumeric(inputVal)){
+                   totalSum += parseFloat(inputVal);
+               }
+           });
+           $('#total',).val(totalSum);
+           $('#total_bayar').val(totalSum);
+       })
+   </script> -->
     </div>
     </div>
 @endsection

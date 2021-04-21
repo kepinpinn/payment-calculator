@@ -95,11 +95,11 @@ class ShoppingDetailController extends Controller
             'price_qty' => 'required',
             'delivery_borrower' => 'required',
             'total_bayar_borrower' => 'required',
-
         ]);
 
         $shopping_detail->update($request->all());
-        return redirect()->back()
+        /* dd($request); */
+       return redirect()->back()
             ->with('success','Details updated successfully.');
     }
 

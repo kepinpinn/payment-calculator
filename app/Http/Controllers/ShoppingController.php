@@ -44,8 +44,6 @@ class ShoppingController extends Controller
             'store' => 'required',
             'amount' => 'required',
             'delivery' => 'required',
-            'total' => 'required',
-            'total_bayar' => 'required',
         ]);
 
         $request->merge([
@@ -73,9 +71,8 @@ class ShoppingController extends Controller
     public function update(Request $request, Shopping $shopping)
     {
 
-        $users = User::query()->get();
         $shopping->update($request->all());
-        return redirect()->route('shoppings.index',['users'=>$users->id])
+        return redirect()->route('shoppings.index')
             ->with('success','Shopping updated successfully');
     }
 

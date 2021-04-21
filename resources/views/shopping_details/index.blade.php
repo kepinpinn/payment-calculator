@@ -21,13 +21,11 @@
                 <thead>
                 <tr>
                     <th width="20px" class="text-center">No</th>
-                    <th width="20px" class="text-center">Borrower</th>
+                    <th width="20px" class="text-center">Creditor</th>
                   <!--  <th width="20px" class="text-center">Date</th> -->
                     <th width="20px" class="text-center">Store</th>
                     <th width="20px" class="text-center">Amount</th>
-                    <th width="20px" class="text-center">PPn</th>
-                    <th width="20px" class="text-center">Delivery</th>
-                    <th width="20px" class="text-center">Promo</th>
+
                     <th width="20px" class="text-center">Total Bayar</th>
                     <th width="280px"class="text-center">Attachment</th>
                     <th width="280px"class="text-center">Status</th>
@@ -41,9 +39,6 @@
                      <!--   <td>{{ $shopping_detail->tanggal }}</td> -->
                         <td>{{ $shopping_detail->store }}</td>
                         <td>{{ $shopping_detail->price_qty }}</td>
-                        <td>{{ $shopping_detail->ppn_borrower }}</td>
-                        <td>{{ $shopping_detail->delivery_borrower }}</td>
-                        <td>{{ $shopping_detail->promo_borrower }}</td>
                         <td>{{ $shopping_detail->total_bayar_borrower }}</td>
                         <td>{{ $shopping_detail->attachment }}</td>
                         <td>{{ $shopping_detail->status }}</td>

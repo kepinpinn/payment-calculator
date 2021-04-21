@@ -25,15 +25,6 @@
     @method('PUT')
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Creditor:</strong>
-                <select name="creditor" id="creditor">
-                    @foreach($users as $user)
-                        <option value="{{$user->id}}" {{ $user->id == $user->id ? "selected" : '' }}>{{$user->id}}.{{$user->name}}</option>
-                    @endforeach
-                </select>
-
-            </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -50,7 +41,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Amount:</strong>
-                <input type="number" name="amount"value="{{$shopping->amount}}" class="form-control" placeholder="Amount">
+                <input type="number" name="amount"value="{{$shopping->amount}}" class="form-control prc" placeholder="Amount">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -62,13 +53,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Delivery:</strong>
-                <input type="number" name="delivery" value="{{$shopping->delivery}}" class="form-control" placeholder="Delivery">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Total:</strong>
-                <input type="number" name="total" value="{{$shopping->total}}" class="form-control" placeholder="Total">
+                <input type="number" name="delivery" value="{{$shopping->delivery}}" class="form-control prc" placeholder="Delivery">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -77,15 +62,24 @@
                 <input type="number" name="promo1" value="{{$shopping->promo1}}"class="form-control" placeholder="Promo">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Total Bayar:</strong>
-                <input type="number" name="total_bayar" value="{{$shopping->total_bayar}}" class="form-control" placeholder="Total Bayar">
-            </div>
-        </div>
     </div>
     <button type="submit" class="btn btn-success" >Save</button>
 </form>
+            <!--
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script>
+                $('.form-group').on('input','.prc','.pr',function (){
+                    var totalSum = 0;
+                    $('.form-group .prc').each(function (){
+                        var inputVal = $(this).val();
+                        if($.isNumeric(inputVal)){
+                            totalSum += parseFloat(inputVal);
+                        }
+                    });
+                    $('#total',).val(totalSum);
+                    $('#total_bayar').val(totalSum);
+                })
+            </script> -->
         </div>
     </div>
 
