@@ -45,6 +45,30 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
+                        <strong>Amount:</strong>
+                        {{ $shopping->amount }}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>PPn:</strong>
+                        {{ $shopping->ppn == "1" ? "Yes" : "No" }}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Delivery:</strong>
+                        {{ $shopping->delivery }}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Promo:</strong>
+                        {{ $shopping->promo1 }}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
                         <strong>Total Bayar:</strong>
                         {{ $shopping->total_bayar }}
                     </div>
@@ -100,31 +124,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <strong>Price:</strong>
-                                                <input type="number" name="price_qty" class="form-control prc" placeholder="Price">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <strong>PPn:</strong>
-                                                <input type="checkbox" name="ppn_borrower" class="form-control" placeholder="PPn">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <strong>Delivery:</strong>
-                                                <input type="number" name="delivery_borrower" class="form-control prc" placeholder="Delivery Borrower">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <strong>Promo:</strong>
-                                                <input type="number" name="promo_borrower" class="form-control" placeholder="Promo">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <strong>Total Bayar Borrower:</strong>
-                                                <input id="total_bayar_borrower" name="total_bayar_borrower" class="form-control" placeholder="Total Bayar Borrower" readonly>
+                                                <input type="number" name="price_qty" class="form-control" placeholder="Price">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -245,9 +245,7 @@
 
                         <th width="20px" class="text-center">Borrower</th>
                         <th width="20px" class="text-center">Price</th>
-                        <th width="20px" class="text-center">Ppn</th>
                         <th width="20px" class="text-center">Promo Borrower</th>
-                        <th width="20px" class="text-center">Delivery Borrower</th>
                         <th width="20px" class="text-center">Total Bayar Borrower</th>
                         <th width="20px" class="text-center">Deskripsi</th>
                         <th width="20px" class="text-center">Status</th>
@@ -258,16 +256,14 @@
                         <tr>
                             <td>{{ $shopping_detail->user->name }}</td>
                             <td>{{ $shopping_detail->price_qty }}</td>
-                            <td>{{ $shopping_detail->ppn_borrower }}</td>
                             <td>{{ $shopping_detail->promo_borrower }}</td>
-                            <td>{{ $shopping_detail->delivery_borrower }}</td>
                             <td>{{ $shopping_detail->total_bayar_borrower }}</td>
                             <td>{{ $shopping_detail->description }}</td>
                             <td>{{ $shopping_detail->status }}</td>
                             <td class="text-center">
                                 <form action="{{ route('shopping_details.destroy',$shopping_detail->id) }}" method="POST">
 
-                                    <button type="button" class="btn btn-primary dialog-edit" data-id="{{ $shopping_detail->id }}"> Edit </button>
+                                    <a class="btn btn-primary btn-sm" href="{{ route('shopping_details.edit',$shopping_detail->id) }}">Edit</a>
 
                                     @csrf
                                     @method('DELETE')
@@ -318,6 +314,7 @@
         </div>
         </div>
     </div>
+    <!--
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
 
@@ -354,5 +351,5 @@
         })
 
     </script>
-
+-->
 @endsection

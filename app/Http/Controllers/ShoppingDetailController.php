@@ -50,8 +50,6 @@ class ShoppingDetailController extends Controller
         $request->validate([
             'borrower' => 'required',
             'price_qty' => 'required',
-            'delivery_borrower' => 'required',
-            'total_bayar_borrower' => 'required',
         ]);
         Shopping_detail::create($request->all());
         return redirect()->back()
@@ -75,10 +73,10 @@ class ShoppingDetailController extends Controller
      * @param  int  $id
       @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Shopping_detail $shopping_detail)
     {
-       return redirect()->back()
-           ->with('success','Detail created successfully.');
+        $users = User::query()->get();
+        return view('shopping_details.edit',compact('shopping_detail'),['users'=>$users]);
     }
 
     /**
@@ -90,17 +88,9 @@ class ShoppingDetailController extends Controller
      */
     public function update(Request $request, Shopping_detail $shopping_detail)
     {
-        $request->validate([
-            'borrower' => 'required',
-            'price_qty' => 'required',
-            'delivery_borrower' => 'required',
-            'total_bayar_borrower' => 'required',
-        ]);
-
         $shopping_detail->update($request->all());
-        /* dd($request); */
-       return redirect()->back()
-            ->with('success','Details updated successfully.');
+        return redirect()->route('shoppings.show',['shopping'=>$shopping_detail->shopping_id])
+            ->with('success','Post created successfully.');
     }
 
     /**

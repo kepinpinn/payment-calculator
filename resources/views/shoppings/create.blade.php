@@ -45,7 +45,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>PPn:</strong>
-                    <input type="checkbox" name="ppn" class="custom-checkbox" placeholder="PPn">
+                    <input type="checkbox" name="ppn" class="custom-checkbox"value="1" {{ old('1') ? 'checked="checked"' : '' }}/>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

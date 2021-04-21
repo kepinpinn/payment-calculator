@@ -24,8 +24,7 @@
     @csrf
     @method('PUT')
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-        </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Date:</strong>
@@ -47,13 +46,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>PPn:</strong>
-                <input type="checkbox" name="ppn" value="{{$shopping->ppn}}" class="custom-checkbox" placeholder="PPn">
+                <input type="checkbox" name="ppn" class="custom-checkbox" {{($shopping->ppn == 1 ? ' checked' : '') }}>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Delivery:</strong>
-                <input type="number" name="delivery" value="{{$shopping->delivery}}" class="form-control prc" placeholder="Delivery">
+                <input type="number" name="delivery" value="{{$shopping->delivery}}" class="form-control" placeholder="Delivery">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

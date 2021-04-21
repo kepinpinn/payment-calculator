@@ -21,12 +21,12 @@
                 <thead>
                 <tr>
                     <th width="20px" class="text-center">No</th>
-                    <th width="20px" class="text-center">Creditor</th>
+                    <th width="20px" class="text-center">Borrower</th>
                   <!--  <th width="20px" class="text-center">Date</th> -->
                     <th width="20px" class="text-center">Store</th>
                     <th width="20px" class="text-center">Amount</th>
-
                     <th width="20px" class="text-center">Total Bayar</th>
+                    <th width="280px"class="text-center">Deskripsi</th>
                     <th width="280px"class="text-center">Attachment</th>
                     <th width="280px"class="text-center">Status</th>
                 </tr>
@@ -40,6 +40,7 @@
                         <td>{{ $shopping_detail->store }}</td>
                         <td>{{ $shopping_detail->price_qty }}</td>
                         <td>{{ $shopping_detail->total_bayar_borrower }}</td>
+                        <td>{{ $shopping_detail->description }}</td>
                         <td>{{ $shopping_detail->attachment }}</td>
                         <td>{{ $shopping_detail->status }}</td>
 

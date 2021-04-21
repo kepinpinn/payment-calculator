@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Shopping_detail;
 use App\Models\Shopping;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -31,19 +30,11 @@ class ShoppingController extends Controller
 
     public function store(Request $request)
     {
-
-
-        if($request->has('ppn')){
-        //if checked
-        }else{
-            //not checked
-        }
-
         $request->validate([
             'tanggal' => 'required',
             'store' => 'required',
             'amount' => 'required',
-            'delivery' => 'required',
+            'delivery' => 'required'
         ]);
 
         $request->merge([
@@ -70,8 +61,14 @@ class ShoppingController extends Controller
 
     public function update(Request $request, Shopping $shopping)
     {
-
-        $shopping->update($request->all());
+        $shopping->update([
+            'tanggal' => $request->date,
+            'store' => $request->store,
+            'amount' => $request-> amount,
+            'ppn' => $request->has('ppn'),
+            'delivery' => $request->delivery,
+            'promo1' => $request->promo1
+        ]);
         return redirect()->route('shoppings.index')
             ->with('success','Shopping updated successfully');
     }

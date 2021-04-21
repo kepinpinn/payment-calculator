@@ -19,7 +19,7 @@ class CreateShoppingsTable extends Migration
             $table->date('tanggal');
             $table->string('store');
             $table->integer('amount');
-            $table->boolean('ppn')->nullable()->default(0);
+            $table->boolean('ppn')->nullable();
             $table->integer('delivery');
             $table->integer('promo1')->nullable();
             $table->timestamps();

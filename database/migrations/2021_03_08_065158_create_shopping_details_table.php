@@ -18,10 +18,6 @@ class CreateShoppingDetailsTable extends Migration
             $table->unsignedBigInteger('shopping_id');
             $table->unsignedBigInteger('borrower');
             $table->integer('price_qty');
-            $table->boolean('ppn_borrower')->nullable()->default(0);
-            $table->integer('promo_borrower')->nullable();
-            $table->integer('delivery_borrower');
-            $table->integer('total_bayar_borrower');
             $table->text('description')->nullable();
             $table->text('attachment')->nullable();
             $table->string('status')->default('unpaid');

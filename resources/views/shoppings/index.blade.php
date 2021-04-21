@@ -41,12 +41,11 @@
                 <td>{{ $shopping->tanggal }}</td>
                 <td>{{ $shopping->store }}</td>
                 <td>{{ $shopping->amount }}</td>
-                <td>{{ $shopping->ppn }}</td>
+                <td>{{ $shopping->ppn == "1" ? "Yes" : "No" }}</td>
                 <td>{{ $shopping->delivery }}</td>
                 <td>{{ $shopping->total }}</td>
                 <td>{{ $shopping->promo1 }}</td>
                 <td>{{ $shopping->total_bayar }}</td>
-
                 <td class="text-center">
                     <form action="{{ route('shoppings.destroy',$shopping->id) }}" method="POST">
 
