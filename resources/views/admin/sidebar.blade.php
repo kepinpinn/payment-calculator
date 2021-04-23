@@ -10,7 +10,7 @@
                 <img src="{{ asset('adminlte/dist/img/jerry.jpg')}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Vodea Dwi Karsa</a>
+                <a class="d-block">Vodea Dwi Karsa</a>
             </div>
         </div>
 
@@ -38,7 +38,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/shopping_details" class="nav-link">
+                            <a href="/payment_details" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Payment</p>
                             </a>

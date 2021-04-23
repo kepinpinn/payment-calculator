@@ -253,6 +253,7 @@
                     </tr></thead>
                     <tbody>
                     @foreach($shopping->shopping_details as $shopping_detail)
+                        @if($shopping_detail->status == 'unpaid')
                         <tr>
                             <td>{{ $shopping_detail->user->name }}</td>
                             <td>{{ $shopping_detail->price_qty }}</td>
@@ -272,7 +273,7 @@
                                 </form>
 
                             </td>
-                        </tr>
+                        </tr>@endif
                     @endforeach
                     </tbody>
                 </table>
@@ -284,7 +285,6 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-
                         <th width="20px" class="text-center">Borrower</th>
                         <th width="20px" class="text-center">Price</th>
                         <th width="20px" class="text-center">Ppn</th>
@@ -296,6 +296,7 @@
                         <th width="20px" class="text-center">Status</th>
                     </tr></thead><tbody>
                     @foreach($shopping->shopping_details as $shopping_detail)
+                        @if($shopping_detail->status == 'paid')
                         <tr>
                             <td>{{ $shopping_detail->user->name }}</td>
                             <td>{{ $shopping_detail->price_qty }}</td>
@@ -306,7 +307,7 @@
                             <td>{{ $shopping_detail->description }}</td>
                             <td>{{ $shopping_detail->attachment }}</td>
                             <td>{{ $shopping_detail->status }}</td>
-                        </tr>
+                        </tr>@endif
                     </tbody>
                     @endforeach
                 </table>

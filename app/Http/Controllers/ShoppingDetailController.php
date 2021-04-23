@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Shopping_detail;
-use App\Models\Shopping;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::resource('shopping_details', ShoppingDetailController::class);
 Route::resource('shoppings', ShoppingController::class);
-
+Route::resource('payment_details', PaymentDetailController::class);
 class ShoppingDetailController extends Controller
 {
     /**

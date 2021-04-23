@@ -1,16 +1,21 @@
 <?php
 
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShoppingController;
 use App\Http\Controllers\ShoppingDetailController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PaymentDetailController;
+
 Route::resource('shoppings', ShoppingController::class)->middleware('auth');
 Route::resource('payments', PaymentController::class)->middleware('auth');
-Route::resource('shopping_details', ShoppingDetailController::class)->middleware('auth');;
-Route::resource('payments', PaymentController::class)->middleware('auth');;
-Route::resource('dashboard',DashboardController::class)->middleware('auth');;
+Route::resource('shopping_details', ShoppingDetailController::class)->middleware('auth');
+Route::resource('payments', PaymentController::class)->middleware('auth');
+Route::resource('payment_details',PaymentDetailController::class)->middleware('auth');
+Route::resource('dashboard', DashboardController::class)->middleware('auth');
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 

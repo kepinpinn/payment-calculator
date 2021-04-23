@@ -5,7 +5,7 @@
         <div class="card-header">
             <h2 >INDEX PAYMENT</h2>
             <div class="float-right">
-                <a class="btn btn-secondary"  href="{{ route('shopping_details.create') }}"> Bayar Hutang</a>
+                <a class="btn btn-secondary" > Bayar Hutang</a>
             </div>
         </div>
 
@@ -29,22 +29,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($shopping_details as $shopping_detail)
                     <tr>
-                        <td class="text-center">{{ ++$i }}</td>
-                        <td>{{ $shopping_detail->user->name}}</td>
-                        <td>{{ $shopping_detail->tanggal }}</td>
-                        <td>{{ $shopping_detail->store }}</td>
-                        <td>{{ $shopping_detail->total_bayar_borrower }}</td>
-                        <td>{{ $shopping_detail->status }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
 
                     </tr>
-                @endforeach
                 </tbody>
             </table>
-            <div class="pull-right">
-                {{ $shopping_details->links()}}
-            </div>
 
         </div>
         <div>

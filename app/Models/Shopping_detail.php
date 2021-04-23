@@ -19,6 +19,9 @@ class Shopping_detail extends Model
     public function user(){
         return $this->belongsTo(User::class,'borrower');
     }
+    public function payment_details(){
+        return $this->belongsTo(Payment_detail::class);
+    }
     public function getPpnBorrowerAttribute(){
         if($this->shoppings->ppn == "1"){
           return $this->price_qty *10/100;

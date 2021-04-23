@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Payment;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Models\Payment_detail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-class PaymentController extends Controller
+Route::resource('payment_details',Payment_detail::class);
+Route::resource('shopping_details', ShoppingDetailController::class);
+
+class PaymentDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +20,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-
-        $payments = Payment::query()->paginate(5);
-
-        return view('payments.index',compact('payments'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('payment_details.index');
     }
 
     /**
@@ -31,7 +30,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        return view('payments.create');
+        //
     }
 
     /**
@@ -42,10 +41,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        Payment::create($request->all());
-
-        return redirect()->route('payments.index')
-            ->with('success','Payment created successfully.');
+        //
     }
 
     /**
@@ -54,10 +50,9 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($payment)
+    public function show($id)
     {
-        $payments = Payment::with('posts')->where('id','=',$payment)->firstOrFail();
-        return view('payments.show',['payment'=>$payments]);
+        //
     }
 
     /**
