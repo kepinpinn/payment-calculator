@@ -11,10 +11,7 @@
             <div class="icon">
                <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">
-                More info
-                <i class="fas fa-arrow-circle-right"></i>
-            </a>
+
         </div>
 
     </div>
@@ -27,10 +24,6 @@
                 <div class="icon">
                     <i class="ion ion-stats-bar"></i>
                 </div>
-                <a href="#" class="small-box-footer">
-                    More info
-                    <i class="fas fa-arrow-circle-right"></i>
-                </a>
             </div>
         </div>
         <div class="col-lg-4 col-6">
@@ -42,10 +35,6 @@
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">
-                    More info
-                    <i class="fas fa-arrow-circle-right"></i>
-                </a>
             </div>
         </div>
     </div>
@@ -54,7 +43,7 @@
         <div class="card-header">
             <h2>HOETANG</h2>
             <div class="float-right">
-                <a class="btn btn-secondary" > Bayar Hutang</a>
+                <a class="btn btn-secondary" href="{{ route('payment_details.create') }}"> Bayar Hutang</a>
             </div>
         </div>
 
@@ -74,10 +63,11 @@
                     <th width="20px" class="text-center">Date</th>
                     <th width="20px" class="text-center">Store</th>
                     <th width="20px" class="text-center">Total Bayar</th>
-                    <th width="280px"class="text-center">Status</th>
+                    <th width="20px"class="text-center">Status</th>
                 </tr>
                 </thead>
                 <tbody>
+
                 <tr>
                     <td></td>
                     <td></td>
@@ -87,6 +77,7 @@
                     <td></td>
 
                 </tr>
+
                 </tbody>
             </table>
 

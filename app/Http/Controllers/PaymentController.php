@@ -1,96 +1,75 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
+use App\Models\Payment_detail;
 use Illuminate\Http\Request;
 use App\Models\Payment;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
+Route::resource('payment_details',Payment_detail::class);
+Route::resource('payments',Payment::class);
+
 class PaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-
         $payments = Payment::query()->paginate(5);
-
         return view('payments.index',compact('payments'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        return view('payments.create');
+        $users = User::query()->get();
+        return view('payments.create',['users'=>$users]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        Payment::create($request->all());
+        $request->validate([
+            'creditor_payment_id' => 'required',
+            'tanggal_payment' => 'required'
+        ]);
 
-        return redirect()->route('payments.index')
-            ->with('success','Payment created successfully.');
+        $request->merge([
+            'borrower_payment_id' =>  Auth::id()
+        ]);
+
+        $payment = Payment::create($request->all());
+        return redirect()->route('payments.show',['payment'=>$payment->id])
+            ->with('success','Post created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($payment)
     {
-        $payments = Payment::with('posts')->where('id','=',$payment)->firstOrFail();
-        return view('payments.show',['payment'=>$payments]);
+        $users = User::query()->get();
+        $payment = Payment::query()->get();
+        return view('payments.show',['payment'=>$payment],['users'=>$users]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Payment $payment)
     {
-        //
+        $payment->delete();
+
+        return redirect()->back()
+            ->with('success','Payments deleted successfully');
     }
 }

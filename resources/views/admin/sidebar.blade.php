@@ -24,7 +24,6 @@
                      with font-awesome or any other icon font library -->
                 <li class="nav-item menu-open">
                     <a href="#" class="nav-link active">
-
                         <p>
                             Menu
                             <i class="right fas fa-angle-left"></i>
@@ -38,7 +37,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/payment_details" class="nav-link">
+                            <a href="/payments" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Payment</p>
                             </a>

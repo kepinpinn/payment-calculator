@@ -13,12 +13,14 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-       /*Schema::create('payments', function (Blueprint $table) {
-
-            $table->string('aaa');
-
-        });*/
-
+        Schema::create('payments', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('creditor_payment_id');
+            $table->date('tanggal_payment');
+            $table->timestamps();
+            $table->foreign('creditor_payment_id')->references('id')->on('users')
+                ->onDelete('cascade');
+        });
     }
 
     /**

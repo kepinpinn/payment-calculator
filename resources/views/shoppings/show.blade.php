@@ -10,8 +10,8 @@
                        aria-controls="custom-tab-show-list" aria-selected="true">Show List Shopping</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="custom-tab-history-payment-tab" data-toggle="pill" href="#custom-tab-history-payment" role="tab"
-                       aria-controls="custom-tab-history-payment" aria-selected="false">History Payment</a>
+                    <a class="nav-link" id="custom-tab-history-shopping-tab" data-toggle="pill" href="#custom-tab-history-shopping" role="tab"
+                       aria-controls="custom-tab-history-shopping" aria-selected="false">History Shopping</a>
                 </li>
             </ul>
         </div>
@@ -25,18 +25,18 @@
                 <a class="btn btn-secondary" href="{{ route('shoppings.index') }}"> Back</a>
             </div>
             <form>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Creditor Name:</strong>
-                        {{ $shopping->user->name }}
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Creditor Name:</strong>
+                            {{ $shopping->user->name }}
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Date:</strong>
-                        {{ $shopping->tanggal }}
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Date:</strong>
+                            {{ $shopping->tanggal }}
+                        </div>
                     </div>
-                </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Store:</strong>
@@ -249,7 +249,7 @@
                         <th width="20px" class="text-center">Total Bayar Borrower</th>
                         <th width="20px" class="text-center">Deskripsi</th>
                         <th width="20px" class="text-center">Status</th>
-                        <th width="280px"class="text-center">Action</th>
+                        <th width="20px"class="text-center">Action</th>
                     </tr></thead>
                     <tbody>
                     @foreach($shopping->shopping_details as $shopping_detail)
@@ -280,8 +280,8 @@
             </div>
             </div>
 
-            <div class="tab-content fade" id="custom-tab-history-payment" role="tabpanel" aria-labelledby="custom-tab-history-payment-tab">
-                <h2> History Shopping</h2>
+            <div class="tab-content fade" id="custom-tab-history-shopping" role="tabpanel" aria-labelledby="custom-tab-history-shopping-tab">
+                <h2> History Payments</h2>
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -315,42 +315,5 @@
         </div>
         </div>
     </div>
-    <!--
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript">
 
-
-        $('.dialog-edit').on('click', function () {
-            var modalDom = $('#modal_edit');
-            var dataId = $(this).data('id')
-
-            modalDom.modal('show');
-
-            var actionValue = modalDom.find('form').attr('action')
-            modalDom.find('form').attr('action', actionValue +'/'   + dataId)
-        });
-
-        $('.form-group').on('input','.prc','.pr',function (){
-            var totalSum = 0;
-            $('.form-group .prc').each(function (){
-                var inputVal = $(this).val();
-                if($.isNumeric(inputVal)){
-                    totalSum += parseFloat(inputVal);
-                }
-            });
-            $('#total_bayar_borrower').val(totalSum);
-        })
-        $('.form-group-2').on('input','.prc','.pr',function (){
-            var totalSum = 0;
-            $('.form-group .prc').each(function (){
-                var inputVal = $(this).val();
-                if($.isNumeric(inputVal)){
-                    totalSum += parseFloat(inputVal);
-                }
-            });
-            $('#total_bayar_borrower').val(totalSum);
-        })
-
-    </script>
--->
 @endsection

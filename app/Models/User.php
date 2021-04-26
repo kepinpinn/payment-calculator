@@ -48,6 +48,8 @@ class User extends Authenticatable
     public function shopping(){
         return $this -> hasMany(Shopping::class);
     }
-
+    public function payment(){
+        return $this -> hasMany(Payment::class);
+    }
 
 }

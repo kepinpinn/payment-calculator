@@ -30,7 +30,7 @@
             <th width="20px" class="text-center">Total</th>
             <th width="20px" class="text-center">Promo</th>
             <th width="20px" class="text-center">Total Bayar</th>
-            <th width="280px"class="text-center">Action</th>
+            <th width="20px"class="text-center">Action</th>
         </tr>
         </thead>
         <tbody>
