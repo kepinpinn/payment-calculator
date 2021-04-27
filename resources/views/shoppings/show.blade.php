@@ -15,8 +15,6 @@
                 </li>
             </ul>
         </div>
-
-
     <div class="card-body">
         <div class="tab-content" id="custom-tabs-one-tabContent">
             <div class="tab-pane fade active show" id="custom-tab-show-list" role="tabpanel" aria-labelledby="custom-tab-show-list-tab">
@@ -74,7 +72,6 @@
                     </div>
                 </div>
             </form>
-
             <div class ="card-body">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">Create Detail Shopping</button>
                 {{-- Start Make Modal --}}

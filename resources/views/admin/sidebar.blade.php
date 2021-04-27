@@ -10,7 +10,7 @@
                 <img src="{{ asset('adminlte/dist/img/jerry.jpg')}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a class="d-block">Vodea Dwi Karsa</a>
+                <a class="d-block">{{Auth::user()->name}}</a>
             </div>
         </div>
 

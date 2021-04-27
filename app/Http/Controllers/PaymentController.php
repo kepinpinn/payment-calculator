@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Shopping_detail;
 use App\Models\User;
 use App\Models\Payment_detail;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 
@@ -48,8 +50,9 @@ class PaymentController extends Controller
 
     public function show($payment)
     {
+
         $users = User::query()->get();
-        $payment = Payment::query()->get();
+        $payment = Payment::with('payment_details','user')->where('id','=',$payment)->firstOrFail();
         return view('payments.show',['payment'=>$payment],['users'=>$users]);
     }
 

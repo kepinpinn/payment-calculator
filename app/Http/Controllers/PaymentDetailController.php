@@ -31,7 +31,16 @@ class PaymentDetailController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'shopping_details' => 'required',
+        ]);
+        $request->merge([
+            'user_id' =>  Auth::id()
+        ]);
+        $shopping = DB::table('shoppings');
+        Payment_detail::create($request->all());
+        return redirect()->back()
+            ->with('success','Detail created successfully.');
     }
 
     public function show($id)

@@ -20,7 +20,7 @@ class Shopping_detail extends Model
         return $this->belongsTo(User::class,'borrower');
     }
     public function payment_details(){
-        return $this->belongsTo(Payment_detail::class);
+        return $this->hasOne(Payment_detail::class);
     }
     public function getPpnBorrowerAttribute(){
         if($this->shoppings->ppn == "1"){

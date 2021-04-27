@@ -36,6 +36,7 @@ class ShoppingDetailController extends Controller
         $request->validate([
             'borrower' => 'required',
             'price_qty' => 'required',
+            'description' => 'required'
         ]);
         $request->merge([
             'user_id' =>  Auth::id()

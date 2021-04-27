@@ -48,6 +48,7 @@ class ShoppingController extends Controller
 
     public function show($shopping)
     {
+
         $users = User::query()->get();
         $shopping = Shopping::with('shopping_details','user')->where('id','=',$shopping)->firstOrFail();
         return view('shoppings.show',['shopping'=>$shopping],['users'=>$users]);

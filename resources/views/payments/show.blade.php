@@ -26,13 +26,13 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Creditor Name:</strong>
-
+                                {{ $payment->user->name }}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Date:</strong>
-
+                                {{ $payment->tanggal_payment }}
                             </div>
                         </div>
                     </form>
@@ -60,22 +60,22 @@
                                                 </ul>
                                             </div>
                                         @endif
-                                        <form id="detail" action="" method="POST">
+                                        <form id="detail" action="{{route('payment_details.store')}}" method="POST">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                                     <div class="form-group">
                                                         <strong>Creditor Name:</strong>
                                                         <label>
-                                                            <input type="text" class="form-control" placeholder="" disabled>
+                                                            <input type="text" class="form-control" placeholder="{{$payment->user->name}}" disabled>
                                                         </label>
-                                                        <input type="hidden" name="shopping_id" value="">
+                                                        <input type="hidden" name="shopping_id" value="{{$payment->id}}">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                                     <div class="form-group">
-                                                        <strong>Store:</strong>
+                                                        <strong>Jajanan:</strong>
                                                         <select name="borrower" id="borrower">
                                                             @foreach($users as $user)
                                                                 <option value="{{$user->id}}">{{$user->name}}</option>

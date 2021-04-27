@@ -15,10 +15,10 @@ class CreatePaymentDetailsTable extends Migration
     {
         Schema::create('payment_details', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('payments_id');
+            $table->unsignedBigInteger('payment_id');
             $table->unsignedBigInteger('shopping_details');
             $table->timestamps();
-            $table->foreign('payments_id')->references('id')->on('payments')
+            $table->foreign('payment_id')->references('id')->on('payments')
                 ->onDelete('cascade');
             $table->foreign('shopping_details')->references('id')->on('shopping_details')
                 ->onDelete('cascade');

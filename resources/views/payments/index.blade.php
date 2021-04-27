@@ -36,7 +36,7 @@
 
                             <a class="btn btn-info btn-sm" href="{{ route('payments.show',$payment->id) }}">Show</a>
 
-                            <a class="btn btn-primary btn-sm" href="{{ route('payments.edit',$payment->id) }}">Edit</a>
+                          <!--  <a class="btn btn-primary btn-sm" href="{{ route('payments.edit',$payment->id) }}">Edit</a>  -->
 
                             @csrf
                             @method('DELETE')
