@@ -37,7 +37,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Price Qty:</strong>
-                            <input type="number" name="store" value="{{$shopping_detail->price_qty}}" class="form-control" placeholder="Store">
+                            <input type="number" name="price_qty" value="{{$shopping_detail->price_qty}}" class="form-control" placeholder="Store">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">

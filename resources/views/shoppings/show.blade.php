@@ -250,7 +250,7 @@
                     </tr></thead>
                     <tbody>
                     @foreach($shopping->shopping_details as $shopping_detail)
-                        @if($shopping_detail->status == 'unpaid')
+
                         <tr>
                             <td>{{ $shopping_detail->user->name }}</td>
                             <td>{{ $shopping_detail->price_qty }}</td>
@@ -270,7 +270,7 @@
                                 </form>
 
                             </td>
-                        </tr>@endif
+                        </tr>
                     @endforeach
                     </tbody>
                 </table>

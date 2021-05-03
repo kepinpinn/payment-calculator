@@ -35,6 +35,7 @@
         </thead>
         <tbody>
         @foreach ($shoppings as $shopping)
+            @if($shopping->user_id == Auth::user()->id)
             <tr>
                 <td class="text-center">{{ ++$i }}</td>
                 <td>{{ $shopping->user->name }}</td>
@@ -60,6 +61,7 @@
                     </form>
                 </td>
             </tr>
+            @endif
         @endforeach
         </tbody>
     </table>

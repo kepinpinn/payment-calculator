@@ -19,7 +19,6 @@ class CreateShoppingDetailsTable extends Migration
             $table->unsignedBigInteger('borrower');
             $table->integer('price_qty');
             $table->text('description')->nullable();
-            $table->text('attachment')->nullable();
             $table->string('status')->default('unpaid');
             $table->timestamps();
 

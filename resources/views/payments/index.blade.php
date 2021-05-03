@@ -27,6 +27,7 @@
                 </thead>
                 <tbody>
                 @foreach ($payments as $payment)
+                    @if($payment->borrower_payment_id == Auth::user()->id)
                 <tr>
                     <td class="text-center">{{ ++$i }}</td>
                     <td>{{$payment->user->name}}</td>
@@ -45,6 +46,7 @@
                         </form>
                     </td>
                 </tr>
+                @endif
                 @endforeach
                 </tbody>
             </table>

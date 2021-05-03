@@ -16,11 +16,11 @@ class CreatePaymentDetailsTable extends Migration
         Schema::create('payment_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('payment_id');
-            $table->unsignedBigInteger('shopping_details');
+            $table->unsignedBigInteger('shopping_details_id');
             $table->timestamps();
             $table->foreign('payment_id')->references('id')->on('payments')
                 ->onDelete('cascade');
-            $table->foreign('shopping_details')->references('id')->on('shopping_details')
+            $table->foreign('shopping_details_id')->references('id')->on('shopping_details')
                 ->onDelete('cascade');
         });
     }

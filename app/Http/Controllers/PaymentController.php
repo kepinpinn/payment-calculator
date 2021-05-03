@@ -24,7 +24,6 @@ class PaymentController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-
     public function create()
     {
         $users = User::query()->get();
@@ -35,8 +34,11 @@ class PaymentController extends Controller
     {
         $request->validate([
             'creditor_payment_id' => 'required',
-            'tanggal_payment' => 'required'
+            'tanggal_payment' => 'required',
+            'attachment' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+        $attachment = time().'.'.$request->attachment->extension();
+        $request->attachment->move(public_path('bukti_bayar'), $attachment);
 
         $request->merge([
             'borrower_payment_id' =>  Auth::id()
@@ -44,24 +46,28 @@ class PaymentController extends Controller
 
         $payment = Payment::create($request->all());
         return redirect()->route('payments.show',['payment'=>$payment->id])
-            ->with('success','Post created successfully.');
+            ->with('success','Post created successfully.')->with('attachment',$attachment);;
     }
-
 
     public function show($payment)
     {
 
         $users = User::query()->get();
         $payment = Payment::with('payment_details','user')->where('id','=',$payment)->firstOrFail();
-        return view('payments.show',['payment'=>$payment],['users'=>$users]);
-    }
 
+        $shopping_details = Shopping_detail::query()
+            ->whereHas('shoppings', function ($query) use ($payment) {
+                $query->where('shoppings.user_id', $payment->creditor_payment_id);
+            })
+            ->get();
+
+        return view('payments.show',['payment'=>$payment],['users'=>$users, 'shopping_details' => $shopping_details]);
+    }
 
     public function edit($id)
     {
         //
     }
-
 
     public function update(Request $request, $id)
     {

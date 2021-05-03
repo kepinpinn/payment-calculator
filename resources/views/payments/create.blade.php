@@ -21,7 +21,7 @@
             </div>
         @endif
         <div class="card-body">
-            <form id="shop"  action="{{route('payments.store') }}" method="POST">
+            <form id="shop"  action="{{route('payments.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -40,6 +40,13 @@
                             <input type="date" name="tanggal_payment" class="form-control" placeholder="Date">
                         </div>
                     </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2">
+                        <div class="form-group">
+                            <strong>Bukti Bayar:</strong>
+                            <input type="file" name="attachment" class="form-control">
+                        </div>
+                    </div>
+
                 </div>
                 <button type="reset" form="shop" class="btn btn-danger" >Reset</button>
                 <button type="submit" form="shop" class="btn btn-success" >Submit</button>

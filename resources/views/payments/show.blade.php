@@ -69,16 +69,16 @@
                                                         <label>
                                                             <input type="text" class="form-control" placeholder="{{$payment->user->name}}" disabled>
                                                         </label>
-                                                        <input type="hidden" name="shopping_id" value="{{$payment->id}}">
+                                                        <input type="hidden" name="payment_id" value="{{$payment->id}}">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                                     <div class="form-group">
                                                         <strong>Jajanan:</strong>
-                                                        <select name="borrower" id="borrower">
-                                                            @foreach($users as $user)
-                                                                <option value="{{$user->id}}">{{$user->name}}</option>
+                                                        <select name="shopping_details_id" id="shopping_details_id">
+                                                            @foreach($shopping_details as $shopping_detail)
+                                                                <option value="{{$shopping_detail->id}}">{{$shopping_detail->description}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -109,13 +109,14 @@
                                 <th width="20px"class="text-center">Action</th>
                             </tr></thead>
                             <tbody>
+                            @foreach($payment->payment_details as $payment_detail)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{$payment->user->name}}</td>
+                                        <td>{{$payment_detail->shopping_details->shoppings->store}}</td>
+                                        <td>{{$payment_detail->shopping_details->price_qty}}</td>
+                                        <td>{{$payment_detail->shopping_details->promo_borrower}}</td>
+                                        <td>{{$payment_detail->total_bayar_payment_borrower}}</td>
+                                        <td>{{$payment_detail->shopping_details->description}}</td>
                                         <td class="text-center">
                                             <form action="" method="POST">
                                                 @csrf
@@ -126,7 +127,7 @@
 
                                         </td>
                                     </tr>
-
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
