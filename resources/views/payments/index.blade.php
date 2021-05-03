@@ -22,6 +22,7 @@
                     <th width="20px" class="text-center">No</th>
                     <th width="20px" class="text-center">Creditor</th>
                     <th width="20px" class="text-center">Date</th>
+                    <th width="20px" class="text-center">Bukti Bayar</th>
                     <th width="20px" class="text-center">Action</th>
                 </tr>
                 </thead>
@@ -32,6 +33,7 @@
                     <td class="text-center">{{ ++$i }}</td>
                     <td>{{$payment->user->name}}</td>
                     <td>{{$payment->tanggal_payment }}</td>
+                    <td><img width="150px" src="{{ url('/bukti_bayar/'.$payment->attachment) }}"></td>
                     <td class="text-center">
                         <form action="{{ route('payments.destroy',$payment->id) }}" method="POST">
 

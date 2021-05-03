@@ -5,7 +5,7 @@
         <div class="col-lg-4 col-6">
         <div class="small-box bg-danger">
             <div class="inner">
-                <h3>150</h3>
+                <h3>{{$hutang}}</h3>
                 <p>Total Hutang</p>
             </div>
             <div class="icon">
@@ -29,7 +29,7 @@
         <div class="col-lg-4 col-6">
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>150</h3>
+                    <h3>{{$total_spend}}</h3>
                     <p>Total Spend</p>
                 </div>
                 <div class="icon">
@@ -43,7 +43,7 @@
         <div class="card-header">
             <h2>HOETANG</h2>
             <div class="float-right">
-                <a class="btn btn-secondary" href="{{ route('payment_details.create') }}"> Bayar Hutang</a>
+                <a class="btn btn-secondary" href="{{ route('payments.create') }}"> Bayar Hutang</a>
             </div>
         </div>
 
@@ -60,23 +60,25 @@
                 <tr>
                     <th width="20px" class="text-center">No</th>
                     <th width="20px" class="text-center">Creditor</th>
-                    <th width="20px" class="text-center">Date</th>
-                    <th width="20px" class="text-center">Store</th>
                     <th width="20px" class="text-center">Total Bayar</th>
+                    <th width="20px" class="text-center">Description</th>
                     <th width="20px"class="text-center">Status</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                @foreach ($shopping_details as $shopping_detail)
+                    @if($shopping_detail->status == 'unpaid')
+                    <tr>
+                        <td class="text-center">{{ ++$i }}</td>
+                        <td>{{ $shopping_detail->shoppings->user->name }}</td>
+                        <td>{{ $shopping_detail->total_bayar_borrower }}</td>
+                        <td>{{ $shopping_detail->description }}</td>
+                        <td>{{ $shopping_detail->status }}</td>
 
-                </tr>
+                    </tr>
+                    @endif
+                @endforeach
 
                 </tbody>
             </table>

@@ -37,16 +37,23 @@ class PaymentController extends Controller
             'tanggal_payment' => 'required',
             'attachment' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-        $attachment = time().'.'.$request->attachment->extension();
-        $request->attachment->move(public_path('bukti_bayar'), $attachment);
-
         $request->merge([
             'borrower_payment_id' =>  Auth::id()
         ]);
 
-        $payment = Payment::create($request->all());
+        $input = $request->all();
+        $file = $request->file('attachment');
+        $nama_file = time()."_".$file->getClientOriginalName();
+        $tujuan_upload = 'bukti_bayar';
+        $file->move($tujuan_upload,$nama_file);
+        $input['attachment'] = $nama_file;
+
+
+
+
+        $payment = Payment::create($input);
         return redirect()->route('payments.show',['payment'=>$payment->id])
-            ->with('success','Post created successfully.')->with('attachment',$attachment);;
+            ->with('success','Post created successfully.');
     }
 
     public function show($payment)
