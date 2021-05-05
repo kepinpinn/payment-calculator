@@ -33,7 +33,7 @@
                     <td class="text-center">{{ ++$i }}</td>
                     <td>{{$payment->user->name}}</td>
                     <td>{{$payment->tanggal_payment }}</td>
-                    <td><img width="150px" src="{{ url('/bukti_bayar/'.$payment->attachment) }}"></td>
+                    <td><a href="{{ url('/bukti_bayar/'.$payment->attachment) }}">{{$payment->attachment}}</a></td>
                     <td class="text-center">
                         <form action="{{ route('payments.destroy',$payment->id) }}" method="POST">
 

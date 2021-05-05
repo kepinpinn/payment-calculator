@@ -9,10 +9,11 @@
                     <a class="nav-link active" id="custom-tab-show-list-tab" data-toggle="pill" href="#custom-tab-show-list" role="tab"
                        aria-controls="custom-tab-show-list" aria-selected="true">Show List Payments</a>
                 </li>
+                <!--
                 <li class="nav-item">
                     <a class="nav-link" id="custom-tab-history-shopping-tab" data-toggle="pill" href="#custom-tab-history-shopping" role="tab"
                        aria-controls="custom-tab-history-shopping" aria-selected="false">History Payments</a>
-                </li>
+                </li> -->
             </ul>
         </div>
         <div class="card-body">
@@ -79,6 +80,7 @@
                                                         <select name="shopping_details_id" id="shopping_details_id">
                                                             @foreach($shopping_details as $shopping_detail)
                                                                 <option value="{{$shopping_detail->id}}">{{$shopping_detail->description}}</option>
+
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -118,7 +120,8 @@
                                         <td>{{$payment_detail->total_bayar_payment_borrower}}</td>
                                         <td>{{$payment_detail->shopping_details->description}}</td>
                                         <td class="text-center">
-                                            <form action="" method="POST">
+                                            <form action="{{ route('payment_details.destroy',$payment_detail->id) }}" method="POST">
+                                                <a class="btn btn-primary btn-sm" href="">Bayar</a>
                                                 @csrf
                                                 @method('DELETE')
 
@@ -132,7 +135,7 @@
                         </table>
                     </div>
                 </div>
-
+<!--
                 <div class="tab-content fade" id="custom-tab-history-shopping" role="tabpanel" aria-labelledby="custom-tab-history-shopping-tab">
                     <h2> History Shopping</h2>
                     <table class="table table-bordered">
@@ -161,7 +164,7 @@
                                 </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

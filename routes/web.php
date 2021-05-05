@@ -31,11 +31,10 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 */
 
 Route::get('/payment_calculator', function () {
-    return view('dashboard.index');
+    return redirect('dashboard');
 })->middleware('auth');
 
 
 Auth::routes(['register'=>true]);
-
 
 /* Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */

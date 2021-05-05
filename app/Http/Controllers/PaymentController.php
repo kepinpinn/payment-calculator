@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Payment_detail;
 use Illuminate\Http\Request;
 use App\Models\Payment;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -48,10 +49,9 @@ class PaymentController extends Controller
         $file->move($tujuan_upload,$nama_file);
         $input['attachment'] = $nama_file;
 
+        $payment =   Payment::create($input);
 
-
-
-        $payment = Payment::create($input);
+        if('attachment' == true)
         return redirect()->route('payments.show',['payment'=>$payment->id])
             ->with('success','Post created successfully.');
     }
@@ -88,4 +88,8 @@ class PaymentController extends Controller
         return redirect()->back()
             ->with('success','Payments deleted successfully');
     }
+    public function download(){
+        return response()->download($pathToFile);
+    }
+
 }

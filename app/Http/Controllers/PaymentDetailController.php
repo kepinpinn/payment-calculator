@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use App\Models\Shopping_detail;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -38,12 +39,13 @@ class PaymentDetailController extends Controller
         $request->merge([
             'user_id' =>  Auth::id()
         ]);
-
         $payment_details = Payment_detail::create($request->all());
-        $shopping_details = Shopping_detail::query()->where('shopping_details.id', $payment_details->creditor_payment_id)->get();
+        $shopping_details = Shopping_detail::query()->where('shopping_details.id', $request->get('shopping_details_id'))->first();
+        $shopping_details -> status='paid';
+        $shopping_details ->save();
 
         return redirect()->back()
-            ->with(['shopping_details' => $shopping_details]);
+            ->with(['shopping_details' => $shopping_details,$payment_details]);
     }
 
     public function show($id)
@@ -62,8 +64,11 @@ class PaymentDetailController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy(Payment_detail $payment_detail)
     {
-        //
+        $payment_detail->delete();
+
+        return redirect()->back()
+            ->with('success','Post deleted successfully');
     }
 }

@@ -9,7 +9,7 @@ class Shopping_detail extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'shopping_id','borrower', 'price_qty','description'
+        'shopping_id','borrower', 'price_qty','description','status'
     ];
     protected $appends  =['promo_borrower','ppn_borrower','delivery_borrower','total_bayar_borrower', 'presentase'];
 

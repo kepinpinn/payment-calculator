@@ -42,6 +42,12 @@ class ShoppingDetailController extends Controller
             'user_id' =>  Auth::id()
         ]);
 
+        $id = Auth::user()->id;
+        if($request->get('borrower') == $id){
+            $request->merge([
+                'status' =>  'paid'
+            ]);
+        }
         Shopping_detail::create($request->all());
         return redirect()->back()
             ->with('success','Detail created successfully.');

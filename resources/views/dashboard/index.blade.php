@@ -18,7 +18,7 @@
         <div class="col-lg-4 col-6">
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>150</h3>
+                    <h3>{{$total_piutang}}</h3>
                     <p>Total Piutang</p>
                 </div>
                 <div class="icon">
@@ -60,6 +60,7 @@
                 <tr>
                     <th width="20px" class="text-center">No</th>
                     <th width="20px" class="text-center">Creditor</th>
+                    <th width="20px" class="text-center">Borrower</th>
                     <th width="20px" class="text-center">Total Bayar</th>
                     <th width="20px" class="text-center">Description</th>
                     <th width="20px"class="text-center">Status</th>
@@ -68,10 +69,11 @@
                 <tbody>
 
                 @foreach ($shopping_details as $shopping_detail)
-                    @if($shopping_detail->status == 'unpaid')
+                    @if($shopping_detail->status == 'unpaid' and $shopping_detail->borrower == Auth::user()->id)
                     <tr>
                         <td class="text-center">{{ ++$i }}</td>
                         <td>{{ $shopping_detail->shoppings->user->name }}</td>
+                        <td>{{ $shopping_detail->user->name }}</td>
                         <td>{{ $shopping_detail->total_bayar_borrower }}</td>
                         <td>{{ $shopping_detail->description }}</td>
                         <td>{{ $shopping_detail->status }}</td>
