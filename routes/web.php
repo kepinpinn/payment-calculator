@@ -33,7 +33,9 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/payment_calculator', function () {
     return redirect('dashboard');
 })->middleware('auth');
-
+Route::get('/', function () {
+    return redirect('dashboard');
+})->middleware('auth');
 
 Auth::routes(['register'=>true]);
 

@@ -33,7 +33,6 @@ class ShoppingController extends Controller
         $request->validate([
             'tanggal' => 'required',
             'store' => 'required',
-            'amount' => 'required',
             'delivery' => 'required'
         ]);
 
@@ -65,7 +64,6 @@ class ShoppingController extends Controller
         $shopping->update([
             'tanggal' => $request->date,
             'store' => $request->store,
-            'amount' => $request-> amount,
             'ppn' => $request->has('ppn'),
             'delivery' => $request->delivery,
             'promo1' => $request->promo1

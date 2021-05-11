@@ -243,6 +243,7 @@
                         <th width="20px" class="text-center">Borrower</th>
                         <th width="20px" class="text-center">Price</th>
                         <th width="20px" class="text-center">Promo Borrower</th>
+                        <th width="20px" class="text-center">Presentase </th>
                         <th width="20px" class="text-center">Total Bayar Borrower</th>
                         <th width="20px" class="text-center">Deskripsi</th>
                         <th width="20px" class="text-center">Status</th>
@@ -254,8 +255,9 @@
                         <tr>
                             <td>{{ $shopping_detail->user->name }}</td>
                             <td>{{ $shopping_detail->price_qty }}</td>
-                            <td>{{ $shopping_detail->promo_borrower }}</td>
-                            <td>{{ $shopping_detail->total_bayar_borrower }}</td>
+                            <td>{{ $shopping_detail->promo_borrower}}</td>
+                            <td>{{ $shopping_detail->presentase}}</td>
+                            <td>{{ $shopping_detail->total_bayar_borrower}}</td>
                             <td>{{ $shopping_detail->description }}</td>
                             <td>{{ $shopping_detail->status }}</td>
                             <td class="text-center">

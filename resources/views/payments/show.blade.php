@@ -79,8 +79,9 @@
                                                         <strong>Jajanan:</strong>
                                                         <select name="shopping_details_id" id="shopping_details_id">
                                                             @foreach($shopping_details as $shopping_detail)
+                                                                @if($shopping_detail->borrower == Auth::id() && $shopping_detail->status == 'unpaid')
                                                                 <option value="{{$shopping_detail->id}}">{{$shopping_detail->description}}</option>
-
+                                                                @endif
                                                             @endforeach
                                                         </select>
                                                     </div>

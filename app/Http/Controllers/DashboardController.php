@@ -16,9 +16,9 @@ class DashboardController extends Controller
     public function index(){
 
         $id = Auth::user()->id;
-        $hutang = Shopping_detail::where('borrower',$id)->where('status','unpaid')->sum('price_qty');
+        $hutang = Shopping_detail::where('borrower',$id)->where('status','unpaid')->get()->sum('total_bayar_borrower');
 
-        $total_spend = Shopping_detail::where('borrower',$id)->sum('price_qty');
+        $total_spend = Shopping_detail::where('borrower',$id)->get()->sum('total_bayar_borrower');
         $total_piutang = Shopping_detail::query()->where('shopping_details.status', 'unpaid')
             ->whereHas('shoppings', function ($query) use ($id) {
                 $query->where('shoppings.user_id',Auth::id());

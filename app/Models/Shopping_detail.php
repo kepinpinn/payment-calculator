@@ -24,18 +24,22 @@ class Shopping_detail extends Model
     }
     public function getPpnBorrowerAttribute(){
         if($this->shoppings->ppn == "1"){
-          return $this->price_qty *10/100;
+          return $this->price_qty * 10/100;
         }else{
-            return null;
+            return 0;
         }
     }
     public function  getPresentaseAttribute(){
-        return $this->price_qty / $this->shoppings->amount;
+        if(!$this->shoppings->amount && $this->price_qty){
+            return 0;
+        }else {
+            return round($this->price_qty / $this->shoppings->amount,4);
+        }
     }
     public function getPromoBorrowerAttribute(){
-        return $this->presentase * $this->shoppings->promo1;
+        return  $this->shoppings->promo1 * $this->presentase;
     }
     public function getTotalBayarBorrowerAttribute(){
-        return (($this->price_qty + $this->ppn_borrower) - $this->promo_borrower)+($this->shoppings->delivery * $this->presentase);
+        return floor((($this->price_qty + $this->ppn_borrower) - $this->promo_borrower)+($this->shoppings->delivery * $this->presentase));
     }
 }

@@ -18,7 +18,6 @@ class CreateShoppingsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->date('tanggal');
             $table->string('store');
-            $table->integer('amount');
             $table->boolean('ppn')->nullable();
             $table->integer('delivery');
             $table->integer('promo1')->nullable();

@@ -21,9 +21,17 @@ class Shopping extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getAmountAttribute(){
+        return $this->shopping_details()->sum('price_qty');
+    }
+
     public function getTotalAttribute(){
+        if($this->ppn == "1"){
+            return $this->amount + ($this->amount * 10/100) + $this->delivery;
+        }else{
         return $this->amount
-            + $this->delivery;
+            + $this->delivery ;
+        }
     }
     public function  getTotalBayarAttribute(){
         return $this->total - $this->promo1;
