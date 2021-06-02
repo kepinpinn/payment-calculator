@@ -122,7 +122,6 @@
                                         <td>{{$payment_detail->shopping_details->description}}</td>
                                         <td class="text-center">
                                             <form action="{{ route('payment_details.destroy',$payment_detail->id) }}" method="POST">
-                                                <a class="btn btn-primary btn-sm" href="">Bayar</a>
                                                 @csrf
                                                 @method('DELETE')
 

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Shopping_detail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Telegram\Bot\FileUpload\InputFile;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 Route::resource('shopping_details', ShoppingDetailController::class);
 Route::resource('shoppings', ShoppingController::class);
@@ -48,7 +50,19 @@ class ShoppingDetailController extends Controller
                 'status' =>  'paid'
             ]);
         }
-        Shopping_detail::create($request->all());
+
+        $shopping_detail = Shopping_detail::create($request->all());
+
+            $text = "{$shopping_detail->user->name}" . " telah berhutang " . "$shopping_detail->description" . " kepada " . "{$shopping_detail->shoppings->user->name} " . "sebesar " . "$shopping_detail->price_qty" . ".\n"
+                . "<b>Silahkan segera lunasi hutang anda!</b>\n"
+                . $request->message;
+
+            Telegram::sendMessage([
+                'chat_id' => env('TELEGRAM_CHANNEL_ID', '-1001404601061'),
+                'parse_mode' => 'HTML',
+                'text' => $text
+            ]);
+
         return redirect()->back()
             ->with('success','Detail created successfully.');
     }
@@ -77,6 +91,15 @@ class ShoppingDetailController extends Controller
 
     public function destroy(Shopping_detail $shopping_detail)
     {
+        $text = "Hutang ". "{$shopping_detail->description} "."{$shopping_detail->user->name} " ."sebesar "."$shopping_detail->price_qty " . "telah dibatalkan oleh "  . "{$shopping_detail->shoppings->user->name}.\n "
+            . $shopping_detail->message;
+
+        Telegram::sendMessage([
+            'chat_id' => env('TELEGRAM_CHANNEL_ID', '-1001404601061'),
+            'parse_mode' => 'HTML',
+            'text' => $text
+        ]);
+
         $shopping_detail->delete();
 
         return redirect()->back()

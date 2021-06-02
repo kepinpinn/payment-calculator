@@ -68,7 +68,7 @@ return [
     */
 
     'timezone' => 'UTC',
-
+    'bot_token' => '1820858209:AAEX6UPzut2wfGojwh8i-fgI2C8zfNJgkxo',
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration

@@ -8,6 +8,7 @@ use App\Http\Controllers\ShoppingDetailController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PaymentDetailController;
+use App\Http\Controllers\TelegramBotController;
 
 Route::resource('shoppings', ShoppingController::class)->middleware('auth');
 Route::resource('payments', PaymentController::class)->middleware('auth');
@@ -16,8 +17,10 @@ Route::resource('payments', PaymentController::class)->middleware('auth');
 Route::resource('payment_details',PaymentDetailController::class)->middleware('auth');
 Route::resource('dashboard', DashboardController::class)->middleware('auth');
 
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('/updated-activity', '\App\Http\Controllers\TelegramBotController@updatedActivity');
 
 /*
 |--------------------------------------------------------------------------

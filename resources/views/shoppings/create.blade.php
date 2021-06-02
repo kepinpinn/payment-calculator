@@ -38,12 +38,6 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Amount:</strong>
-                    <input type="number" name="amount" class="form-control prc" placeholder="Amount">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
                     <strong>PPn:</strong>
                     <input type="checkbox" name="ppn" class="custom-checkbox"value="1" {{ old('1') ? 'checked="checked"' : '' }}/>
                 </div>
