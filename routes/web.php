@@ -18,9 +18,9 @@ Route::resource('payment_details',PaymentDetailController::class)->middleware('a
 Route::resource('dashboard', DashboardController::class)->middleware('auth');
 
 
-
+Route::get('register', '\App\Http\Controllers\Auth\RegisterController@create')->middleware('auth');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-Route::get('/updated-activity', '\App\Http\Controllers\TelegramBotController@updatedActivity');
+Route::get('/updated-activity', '\App\Http\Controllers\TelegramBotController@updatedActivity')->middleware('auth');
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +39,7 @@ Route::get('/payment_calculator', function () {
 Route::get('/', function () {
     return redirect('dashboard');
 })->middleware('auth');
+
 
 Auth::routes(['register'=>true]);
 

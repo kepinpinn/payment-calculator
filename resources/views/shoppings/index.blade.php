@@ -30,7 +30,8 @@
             <th width="20px" class="text-center">Total</th>
             <th width="20px" class="text-center">Promo</th>
             <th width="20px" class="text-center">Total Bayar</th>
-            <th width="20px"class="text-center">Action</th>
+            <th width="20px" class="text-center">Status</th>
+            <th width="20px" class="text-center">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -47,6 +48,17 @@
                 <td>{{ $shopping->total }}</td>
                 <td>{{ $shopping->promo1 }}</td>
                 <td>{{ $shopping->total_bayar }}</td>
+                @foreach($shopping->shopping_details as $shopping_detail)
+                    @if($shopping_detail->status == 'paid')
+                <td>
+                    Complete
+                </td>
+                    @endif
+                        @if($shopping_detail->status == 'unpaid')
+                            <td>Uncomplete</td>
+                        @endif
+                @endforeach
+
                 <td class="text-center">
                     <form action="{{ route('shoppings.destroy',$shopping->id) }}" method="POST">
 

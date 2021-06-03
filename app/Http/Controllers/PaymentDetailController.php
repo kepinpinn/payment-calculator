@@ -48,16 +48,15 @@ class PaymentDetailController extends Controller
         $shopping_details ->save();
 
 
-        $text = "{$payment_details->borrower_payment_id}" . " telah membayar hutang " . "$shopping_details->description" . " kepada " . "{$payment_details->creditor_payment_id} " . "sebesar " . "{$shopping_details->price_qty}.\n"
-            . $request->message;
+        $text = Auth::user()->name . " telah membayar hutang " . "$shopping_details->description" . " kepada " . "{$payment_details->payments->user->name} " . "sebesar " . "{$shopping_details->price_qty}.\n";
 
         Telegram::sendMessage([
             'chat_id' => env('TELEGRAM_CHANNEL_ID', '-1001404601061'),
             'parse_mode' => 'HTML',
             'text' => $text
         ]);
-        /*
-        $attachment = $request->file('attachment');
+
+       /* $attachment = $payments->attachment;
         Telegram::sendPhoto([
             'chat_id' => env('TELEGRAM_CHANNEL_ID', '-1001404601061'),
             'attachment' => InputFile::createFromContents(file_get_contents($attachment->getRealPath()), str_random(10) . '.' . $attachment->getClientOriginalExtension())
@@ -85,9 +84,24 @@ class PaymentDetailController extends Controller
 
     public function destroy(Payment_detail $payment_detail)
     {
+
+        $shopping_details = Shopping_detail::query()->where('shopping_details.id', $payment_detail->shopping_details_id)->first();
+
+          $shopping_details->fill([
+                'status' =>  'unpaid'
+            ]);
+        $shopping_details->save();
+
+        $text = "Hutang ". "$shopping_details->description "  .Auth::user()->name . " telah dibatalkan " . " kepada " . "{$payment_detail->payments->user->name} " . "sebesar " . "{$shopping_details->price_qty}.\n"
+            . "<b>Harap ulangi pembayaran anda!</b>\n";
+
+        Telegram::sendMessage([
+            'chat_id' => env('TELEGRAM_CHANNEL_ID', '-1001404601061'),
+            'parse_mode' => 'HTML',
+            'text' => $text
+        ]);
+
         $payment_detail->delete();
-        // $shopping_details = Shopping_detail::query()->where('shopping_details.id', $request->get('shopping_details_id'))->first();
-       // $shopping_details -> status='unpaid';
         return redirect()->back()
             ->with('success','Post deleted successfully');
     }

@@ -288,11 +288,11 @@
                         <th width="20px" class="text-center">Price</th>
                         <th width="20px" class="text-center">Ppn</th>
                         <th width="20px" class="text-center">Promo Borrower</th>
-                        <th width="20px" class="text-center">Delivery Borrower</th>
                         <th width="20px" class="text-center">Total Bayar Borrower</th>
                         <th width="20px" class="text-center">Deskripsi</th>
                         <th width="20px" class="text-center">Attachment</th>
                         <th width="20px" class="text-center">Status</th>
+                        <th width="20px" class="text-center">Action</th>
                     </tr></thead><tbody>
                     @foreach($shopping->shopping_details as $shopping_detail)
                         @if($shopping_detail->status == 'paid')
@@ -301,11 +301,19 @@
                             <td>{{ $shopping_detail->price_qty }}</td>
                             <td>{{ $shopping_detail->ppn_borrower }}</td>
                             <td>{{ $shopping_detail->promo_borrower }}</td>
-                            <td>{{ $shopping_detail->delivery_borrower }}</td>
                             <td>{{ $shopping_detail->total_bayar_borrower }}</td>
                             <td>{{ $shopping_detail->description }}</td>
-                            <td>{{ $shopping_detail->attachment }}</td>
+                            <td>{{ $shopping_detail->payment_details->payments->attachment}}</td>
                             <td>{{ $shopping_detail->status }}</td>
+                            <td class="text-center">
+                                <form action="{{ route('payment_details.destroy',$shopping_detail->payment_details->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                </form>
+
+                            </td>
                         </tr>@endif
                     </tbody>
                     @endforeach

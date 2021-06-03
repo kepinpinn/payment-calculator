@@ -54,8 +54,7 @@ class ShoppingDetailController extends Controller
         $shopping_detail = Shopping_detail::create($request->all());
 
             $text = "{$shopping_detail->user->name}" . " telah berhutang " . "$shopping_detail->description" . " kepada " . "{$shopping_detail->shoppings->user->name} " . "sebesar " . "$shopping_detail->price_qty" . ".\n"
-                . "<b>Silahkan segera lunasi hutang anda!</b>\n"
-                . $request->message;
+                . "<b>Silahkan segera lunasi hutang anda!</b>\n";
 
             Telegram::sendMessage([
                 'chat_id' => env('TELEGRAM_CHANNEL_ID', '-1001404601061'),
@@ -91,18 +90,20 @@ class ShoppingDetailController extends Controller
 
     public function destroy(Shopping_detail $shopping_detail)
     {
-        $text = "Hutang ". "{$shopping_detail->description} "."{$shopping_detail->user->name} " ."sebesar "."$shopping_detail->price_qty " . "telah dibatalkan oleh "  . "{$shopping_detail->shoppings->user->name}.\n "
-            . $shopping_detail->message;
 
-        Telegram::sendMessage([
-            'chat_id' => env('TELEGRAM_CHANNEL_ID', '-1001404601061'),
-            'parse_mode' => 'HTML',
-            'text' => $text
-        ]);
+            $text = "Hutang " . "{$shopping_detail->description} " . "{$shopping_detail->user->name} " . "sebesar " . "$shopping_detail->price_qty " . "telah dibatalkan oleh " . "{$shopping_detail->shoppings->user->name}.\n "
+                . $shopping_detail->message;
+
+            Telegram::sendMessage([
+                'chat_id' => env('TELEGRAM_CHANNEL_ID', '-1001404601061'),
+                'parse_mode' => 'HTML',
+                'text' => $text
+            ]);
 
         $shopping_detail->delete();
 
         return redirect()->back()
-            ->with('success','Post deleted successfully');
+            ->with('success','Data deleted successfully');
     }
+
 }

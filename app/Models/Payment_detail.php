@@ -15,7 +15,7 @@ class Payment_detail extends Model
         return $this->belongsTo(Shopping_detail::class);
     }
     public function payments(){
-        return $this->belongsTo(Payment::class);
+        return $this->belongsTo(Payment::class, 'payment_id');
     }
     public function  getTotalBayarPaymentBorrowerAttribute(){
         return $this->shopping_details->price_qty - $this->shopping_details->promo_borrower;

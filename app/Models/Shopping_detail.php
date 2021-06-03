@@ -20,7 +20,7 @@ class Shopping_detail extends Model
         return $this->belongsTo(User::class,'borrower');
     }
     public function payment_details(){
-        return $this->hasOne(Payment_detail::class);
+        return $this->hasOne(Payment_detail::class,'shopping_details_id');
     }
     public function getPpnBorrowerAttribute(){
         if($this->shoppings->ppn == "1"){
@@ -41,5 +41,8 @@ class Shopping_detail extends Model
     }
     public function getTotalBayarBorrowerAttribute(){
         return floor((($this->price_qty + $this->ppn_borrower) - $this->promo_borrower)+($this->shoppings->delivery * $this->presentase));
+    }
+    public function getStatusAttribute(){
+        return $this->payment_details()->exists()?"paid":"unpaid";
     }
 }
