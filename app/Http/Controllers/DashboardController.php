@@ -23,7 +23,7 @@ class DashboardController extends Controller
             ->whereHas('shoppings', function ($query) use ($id) {
                 $query->where('shoppings.user_id',Auth::id());
             })
-            ->sum('price_qty');
+            ->get()->sum('total_bayar_borrower');
         $shopping_details = Shopping_detail::query($id)->paginate(5);
 
         return view('dashboard.index',compact('shopping_details','hutang','total_spend','total_piutang'))

@@ -280,6 +280,32 @@
             </div>
 
             <div class="tab-content fade" id="custom-tab-history-shopping" role="tabpanel" aria-labelledby="custom-tab-history-shopping-tab">
+                <h2>Your Payment</h2>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th width="20px" class="text-center">Borrower</th>
+                        <th width="20px" class="text-center">Price</th>
+                        <th width="20px" class="text-center">Ppn</th>
+                        <th width="20px" class="text-center">Promo Borrower</th>
+                        <th width="20px" class="text-center">Total Bayar Borrower</th>
+                        <th width="20px" class="text-center">Deskripsi</th>
+                        <th width="20px" class="text-center">Status</th>
+                    </tr></thead><tbody>
+                    @foreach($shopping->shopping_details as $shopping_detail)
+                        @if($shopping_detail->status == 'paid' && $shopping_detail->borrower == Auth::user()->id)
+                            <tr>
+                                <td>{{ $shopping_detail->user->name }}</td>
+                                <td>{{ $shopping_detail->price_qty }}</td>
+                                <td>{{ $shopping_detail->ppn_borrower }}</td>
+                                <td>{{ $shopping_detail->promo_borrower }}</td>
+                                <td>{{ $shopping_detail->total_bayar_borrower }}</td>
+                                <td>{{ $shopping_detail->description }}</td>
+                                <td>{{ $shopping_detail->status }}</td>
+                               @endif
+                    </tbody>
+                    @endforeach
+                </table>
                 <h2> History Payments</h2>
                 <table class="table table-bordered">
                     <thead>
@@ -295,7 +321,7 @@
                         <th width="20px" class="text-center">Action</th>
                     </tr></thead><tbody>
                     @foreach($shopping->shopping_details as $shopping_detail)
-                        @if($shopping_detail->status == 'paid')
+                        @if($shopping_detail->status == 'paid' && $shopping_detail->borrower != Auth::user()->id)
                         <tr>
                             <td>{{ $shopping_detail->user->name }}</td>
                             <td>{{ $shopping_detail->price_qty }}</td>

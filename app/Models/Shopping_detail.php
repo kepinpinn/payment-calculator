@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Shopping_detail extends Model
 {
@@ -43,6 +44,13 @@ class Shopping_detail extends Model
         return floor((($this->price_qty + $this->ppn_borrower) - $this->promo_borrower)+($this->shoppings->delivery * $this->presentase));
     }
     public function getStatusAttribute(){
-        return $this->payment_details()->exists()?"paid":"unpaid";
+
+        if($this->payment_details()->exists() || $this->borrower == $this->shoppings->user_id){
+            return "paid";
+        }
+        else{
+            return "unpaid";
+        }
+
     }
 }

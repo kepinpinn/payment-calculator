@@ -16,12 +16,12 @@
     <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
         <!-- Notifications Dropdown Menu -->
-
-        @if (Route::has('register'))
+        @if(Auth::user()->name == 'Admin')
+        @if (Route::has('register') )
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
             </li>
-        @endif
+        @endif @endif
         <li class="nav-item">
             <a href="/logout" class="nav-link">Logout</a>
         </li>
