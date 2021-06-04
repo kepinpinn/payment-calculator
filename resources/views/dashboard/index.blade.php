@@ -41,7 +41,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h2>HOETANG</h2>
+            <h2>HUTANG</h2>
             <div class="float-right">
                 <a class="btn btn-secondary" href="{{ route('payments.create') }}"> Bayar Hutang</a>
             </div>
