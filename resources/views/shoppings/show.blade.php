@@ -329,7 +329,7 @@
                             <td>{{ $shopping_detail->promo_borrower }}</td>
                             <td>{{ $shopping_detail->total_bayar_borrower }}</td>
                             <td>{{ $shopping_detail->description }}</td>
-                            <td>{{ $shopping_detail->payment_details->payments->attachment}}</td>
+                            <td><a href="{{ url('/bukti_bayar/'.$shopping_detail->payment_details->payments->attachment) }}">{{ $shopping_detail->payment_details->payments->attachment}}</td>
                             <td>{{ $shopping_detail->status }}</td>
                             <td class="text-center">
                                 <form action="{{ route('payment_details.destroy',$shopping_detail->payment_details->id) }}" method="POST">
