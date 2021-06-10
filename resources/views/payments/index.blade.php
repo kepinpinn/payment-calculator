@@ -5,7 +5,7 @@
         <div class="card-header">
             <h2 >HISTORY PAYMENT</h2>
             <div class="float-right">
-                <a class="btn btn-secondary" href="{{ route('payments.create') }}"> Bayar Hutang</a>
+                <a class="btn btn-secondary" href="{{ route('payments.create') }}"> Bayar Utang</a>
             </div>
 
         </div>
